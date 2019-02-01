@@ -18,4 +18,9 @@ return [
         ':name' => ['index/hello', ['method' => 'post']],
     ],
     "test"=>"index/Index/test",
+	"index"=>"index/Index/index",
+	"blog"=>"blog/Blog/index",
+	"resume"=>"resume/Resume/index",
+	"contact"=>"contact/Contact/index",
+	"photo"=>"portfolio/Portfolio/index",
 ];
