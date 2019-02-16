@@ -17,10 +17,4 @@ return [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
-    "test"=>"index/Index/test",
-	"index"=>"index/Index/index",
-	"blog"=>"blog/Blog/index",
-	"resume"=>"resume/Resume/index",
-	"contact"=>"contact/Contact/index",
-	"photo"=>"portfolio/Portfolio/index",
 ];
