@@ -25,7 +25,7 @@ switch ($_SERVER['PATH_INFO']){
 	case '/blog':
 		$module = 'blog/blog/index';
 		break;
-	case '/portfolio':
+	case '/photo':
 		$module = 'portfolio/portfolio/index';
 		break;
 	case '/resume':

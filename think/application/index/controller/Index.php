@@ -6,6 +6,7 @@ class Index extends Controller
 {
     public function index()
     {
+        $this->assign("title", "骑着去看海的个人主页");
         return $this->fetch();
     }
     public  function test()
