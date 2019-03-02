@@ -12,7 +12,7 @@
 define('APP_DEBUG',True);
 
 // [ 应用入口文件 ]
-
+session_start();
 
 //绑定当前访问到模块；
 switch ($_SERVER['PATH_INFO']){
