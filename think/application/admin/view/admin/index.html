@@ -1,54 +1,79 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{extend name='public/base'}
+{block name='css'}
+<style type="text/css">
+.logo_header {
+	margin-top: 10px;
+	background-color: #105c4f;
+}
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{$title}</title>
-<link rel="stylesheet" href="__css__/animate.css" />
-<link rel="stylesheet" href="__css__/bootstrap.css" />
-<link rel="stylesheet" href="__css__/flexslider.css" />
-<link rel="stylesheet" href="__css__/icomoon.css" />
+span, h2 {
+	color: white;
+}
 
-<script src="__js__/jquery.easing.1.3.js"></script>
-<script src="__js__/jquery.min.js"></script>
-<script src="__js__/jquery.flexslider-min.js"></script>
-<script src="__js__/bootstrap.min.js"></script>
-<script src="__js__/jquery.waypoints.min.js"></script>
-<style type="text/css">	
-	body{background:url(__images__/admin_background.jpg) no-repeat; background-size:cover; background-attachment:fixed;}
-	#content{  display:table; text-align:center;}
-	.cell{ display:table-cell; vertical-align:middle;}
-	.form-control{ margin-top:10px;}
+h2 {
+	line-height: 60px;
+	margin-left:10px;
+}
+
+.info_txt, .logo_txt {
+	height: 60px;
+	color: white;
+	position: relative;
+}
+
+#msg_info {
+	display: block;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: #0a3b32;
+	position: absolute;
+	margin: auto;
+	height: 30px;
+	width: 300px;
+	text-align: center;
+	line-height: 30px;
+}
+
 </style>
-</head>
-<body>
-<div class="container" id="content">
-	<div class="row cell">
-		<div class="col-sm-4"><img src="__images__/yinweiweb3_03.png" /></div>
-        <div class="col-sm-6">
-            <form>
-            <h4>用户登陆</h4>
-        	<div class="form-group">
-				<input class="form-control" placeholder="用户名" />
-                <input class="form-control" placeholder="密码" type="password" />
-            </div>
-            
-			<input class="btn btn-default" type="submit" value="登陆" onclick="#">
-        </form>
-        </div>
- 
-    </div>
+{/block}
+{block name='content'}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class='logo_header'>
+	<div class='row'>
+		<div class='col-xs-8 logo_txt'>
+			<h2>骑着蜗牛去看海的后台</h2>
+		</div>
+		<div class='col-xs-4 info_txt'>
+			<div id="msg_info"><span class='time_show'></span> | 欢迎{:session('username')}回来</div>
+		</div>
+	</div>   <!-- row end -->
+	
+	<div class='row'>
+		
+	</div>
+	<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 </div>
+{/block}
 
+{block name='js'}
 <script type="text/javascript">
-	var browseWidth = $(window).width();
-    var browseHeight = $(window).height();
-    $("#content").css('height', browseHeight);
-    $(window).resize(function(){
-    	browseHeight = $(window).height();
-        $("#content").css('height', browseHeight);
-    });
+	function getDate()
+	{		
+		var today = new Date();
+		var date = today.getFullYear() + "." + twoDigits(today.getMonth() + 1) + "." + twoDigits(today.getDate()) + " ";
+		var week = " 星期" + "日一二三四五六 ".charAt(today.getDay());
+		var time = twoDigits(today.getHours()) + ": " + twoDigits(today.getMinutes()) + ": " + twoDigits(today.getSeconds());		
+		$('.time_show').html(date + " " + week + " " + time);
+		
+	}
+	function twoDigits(val)
+	{
+		if(val < 10) return '0'+ val; else return val;
+	}
+	$(function(){setInterval(getDate,1000);})
 </script>
-</body>
-</html>
+{/block}
+
 

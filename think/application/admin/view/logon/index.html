@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+<link rel="stylesheet" href="__css__/animate.css" />
+<link rel="stylesheet" href="__css__/bootstrap.css" />
+<link rel="stylesheet" href="__css__/flexslider.css" />
+<link rel="stylesheet" href="__css__/icomoon.css" />
+
+<script src="__js__/jquery.easing.1.3.js"></script>
+<script src="__js__/jquery.min.js"></script>
+<script src="__js__/jquery.flexslider-min.js"></script>
+<script src="__js__/bootstrap.min.js"></script>
+<script src="__js__/jquery.waypoints.min.js"></script>
+<style type="text/css">	
+	body{background:url(__images__/admin_background.jpg) no-repeat; background-size:cover; background-attachment:fixed;}
+	#content{  display:table; text-align:center;}
+	.cell{ display:table-cell; vertical-align:middle;}
+	.form-control{ margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="container" id="content">
+	<div class="row cell">
+		<div class="col-sm-4"><img src="__images__/yinweiweb3_03.png" /></div>
+        <div class="col-sm-6">
+            <form action='logon' method='post'>
+            <h4>用户登陆</h4>
+        	<div class="form-group">
+				<input value="{:cookie('username')}" id="username" name="username"  type="text" class="form-control" placeholder="用户名" />
+                <input value="{:cookie('password')}" class="form-control" id="password"  name="password" type="password" placeholder="密码" type="password" />
+            </div>            
+			<input class="btn btn-default" type="submit" value="登陆">
+        </form>
+        </div>
+ 
+    </div>
+</div>
+
+<script type="text/javascript">
+	var browseWidth = $(window).width();
+    var browseHeight = $(window).height();
+    $("#content").css('height', browseHeight);
+    $(window).resize(function(){
+    	browseHeight = $(window).height();
+        $("#content").css('height', browseHeight);
+    });
+</script>
+</body>
+</html>
+

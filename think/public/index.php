@@ -33,9 +33,12 @@ switch ($_SERVER['PATH_INFO']){
 		break;
 	case '/contact':
 		$module = 'contact/contact/index';
-		break;
+        break;
+    default:
+		$module = '';  
 }
-define('BIND_MODULE', $module);
+if($module)
+    define('BIND_MODULE', $module);
 
 
 // 定义应用目录
