@@ -1,79 +1,16 @@
 {extend name='public/base'}
-{block name='css'}
-<style type="text/css">
-.logo_header {
-	margin-top: 10px;
-	background-color: #105c4f;
-}
-
-span, h2 {
-	color: white;
-}
-
-h2 {
-	line-height: 60px;
-	margin-left:10px;
-}
-
-.info_txt, .logo_txt {
-	height: 60px;
-	color: white;
-	position: relative;
-}
-
-#msg_info {
-	display: block;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	background-color: #0a3b32;
-	position: absolute;
-	margin: auto;
-	height: 30px;
-	width: 300px;
-	text-align: center;
-	line-height: 30px;
-}
-
-</style>
-{/block}
 {block name='content'}
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<div class='logo_header'>
-	<div class='row'>
-		<div class='col-xs-8 logo_txt'>
-			<h2>骑着蜗牛去看海的后台</h2>
+	<div class='panel panel-default'>
+		<div class='panel-heading'>
+			��ҳ����
 		</div>
-		<div class='col-xs-4 info_txt'>
-			<div id="msg_info"><span class='time_show'></span> | 欢迎{:session('username')}回来</div>
+		<div class='panel-body'>
+			<div class='row'>
+			
+			</div>
 		</div>
-	</div>   <!-- row end -->
-	
-	<div class='row'>
-		
 	</div>
-	<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-</div>
 {/block}
 
-{block name='js'}
-<script type="text/javascript">
-	function getDate()
-	{		
-		var today = new Date();
-		var date = today.getFullYear() + "." + twoDigits(today.getMonth() + 1) + "." + twoDigits(today.getDate()) + " ";
-		var week = " 星期" + "日一二三四五六 ".charAt(today.getDay());
-		var time = twoDigits(today.getHours()) + ": " + twoDigits(today.getMinutes()) + ": " + twoDigits(today.getSeconds());		
-		$('.time_show').html(date + " " + week + " " + time);
-		
-	}
-	function twoDigits(val)
-	{
-		if(val < 10) return '0'+ val; else return val;
-	}
-	$(function(){setInterval(getDate,1000);})
-</script>
-{/block}
 
 
