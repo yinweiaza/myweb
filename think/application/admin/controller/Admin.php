@@ -13,6 +13,5 @@ class Admin extends Controller
             $this->assign('title', "骑着蜗牛去看海的后台");
             return $this->fetch();		    
 		}
-
 	}	
 }

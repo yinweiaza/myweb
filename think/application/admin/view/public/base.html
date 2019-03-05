@@ -86,7 +86,26 @@ h2 {
 	{
 		if(val < 10) return '0'+ val; else return val;
 	}
-	$(function(){setInterval(getDate,1000);})
+	
+
+
+	var navFixed = function() {
+	$(".nav_list").css("height",
+				$(window).height() - $(".nav_list").position().top);
+		$(".js-fh5co-nav-toggle").css('top', $(".nav_list").height() - 100);
+		$(window).resize(
+				function() {
+					$(".nav_list").css("height",
+							$(window).height() - $(".nav_list").top);
+					$(".js-fh5co-nav-toggle").css('top',
+							$(".nav_list").height() - 100);
+				})
+	}
+
+	$(function() {
+		navFixed();
+		setInterval(getDate, 1000);
+	})
 </script>
 
 {block name='js'}
