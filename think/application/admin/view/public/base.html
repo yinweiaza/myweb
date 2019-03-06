@@ -47,6 +47,89 @@ h2 {
 }
 .list-group-item img{ margin-left:10px; width:32px; height:32px;}
 .list-group-item h3{ display:inline; margin-left:10px; font-size:16px;text-align: center;}
+
+.yw-nav-toggle{
+	position:fixed;
+	bottom:10px;
+	left:10px;
+	z-index:999;
+	cursor:pointer;
+	opacity:1;
+	visibility:hidden;
+	-webkit-transition:0.5s;
+	-o-transition:0.5s;
+	transition:0.5s;
+}
+
+.yw-nav-toggle i{
+  position: relative;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 30px;
+  height: 2px;
+  color: #000;
+  font: bold 14px/.4 Helvetica;
+  text-transform: uppercase;
+  text-indent: -55px;
+  background: #000;
+  transition: all .2s ease-out;
+}
+
+.yw-nav-toggle i::before, .yw-nav-toggle i::after {
+  content: '';
+  width: 30px;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  left: 0;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.yw-nav-toggle i::before{
+	top:-7px;	
+}
+
+.yw-nav-toggle i::after{
+	bottom:-7px;	
+}
+
+.yw-nav-toggle:hover i::before{
+	top:-10px;	
+}
+
+.yw-nav-toggle:hover i::after{
+	bottom:-10px;	
+}
+
+.yw-nav-toggle:active i::before{
+	top:0px;
+	-webkit-transform: rotateZ(45deg);
+  -moz-transform: rotateZ(45deg);
+  -ms-transform: rotateZ(45deg);
+  -o-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);	
+}
+
+.yw-nav-toggle:active i::after{
+	bottom:0px;
+	-webkit-transform: rotateZ(-45deg);
+  -moz-transform: rotateZ(-45deg);
+  -ms-transform: rotateZ(-45deg);
+  -o-transform: rotateZ(-45deg);
+  transform: rotateZ(-45deg);	
+}
+
+@media screen and (max-width: 768px) {
+.yw-nav-toggle{
+    opacity: 1;
+    visibility: visible;
+}
+}
+
 </style>
 {/block}
 <body>
@@ -63,7 +146,7 @@ h2 {
 <div class='main_content'>
 	<div class='nav_list'>
 		{include file="admin@public/nav"}
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>			<!-- fixed  left bottom -->
+		<a href="#" class="js-yw-nav-toggle yw-nav-toggle"><i></i></a>			<!-- fixed  left bottom -->
 	</div>
 	<div class='manager_content'>
 		{block name="content"}{/block}	
@@ -91,16 +174,14 @@ h2 {
 
 	var navFixed = function() {
 	$(".nav_list").css("height",
-				$(window).height() - $(".nav_list").position().top);
-		$(".js-fh5co-nav-toggle").css('top', $(".nav_list").height() - 100);
+				$(window).height() - $(".nav_list").position().top);		
 		$(window).resize(
 				function() {
 					$(".nav_list").css("height",
 							$(window).height() - $(".nav_list").top);
-					$(".js-fh5co-nav-toggle").css('top',
-							$(".nav_list").height() - 100);
 				})
 	}
+	
 
 	$(function() {
 		navFixed();
