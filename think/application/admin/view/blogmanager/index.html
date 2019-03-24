@@ -1,13 +1,55 @@
 {extend name='public/base'}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 {block name='content'}
-	<div class='panel panel-default content_area'>
-		<div class='panel-heading'>
-			���͹���
-		</div>
-		<div class='panel-body'>
-			<div class='row'>
-			
+<div class='panel panel-default content_area'>
+	<div class='panel-heading'>
+		<h3 class="panel-title">博客管理</h3>
+	</div>
+	<div class='panel-body'>
+		<form class="form-inline">
+			<div class="form-group">
+				<label for="time">Time</label> <input type="text"
+					class="form-control" placeholder="time">
 			</div>
+			<div class="form-group">
+				<label for="owner">owner</label> <input type="text"
+					class="form-control" placeholder="owner">
+			</div>
+			<button type="submit" class="btn btn-default">search</button>
+		</form>
+
+		<div class="table_show">
+			<table class="table table-striped" style='table-layout:fixed;'>
+				<thead class="table_head">
+					<tr>
+						<th><input type="checkbox"></th>
+						<th>编号</th>
+						<th>标题</th>
+						<th>类别</th>
+						<th>时间</th>
+						<th>内容</th>
+						<th>观看次数</th>
+						<th>发布人</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					{volist name="blogs" id='vo'}
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>{$vo.blog_id}</td>
+						<td>{$vo.title}</td>
+						<td>{$vo.class}</td>
+						<td>{$vo.time}</td>
+						<td>{$vo.content}</td>
+						<td>{$vo.watch_num}</td>
+						<td>{$vo.owner}</td>
+						<td><a>删除</a></td>
+					</tr>
+					{/volist}
+				</tbody>
+			</table>
 		</div>
 	</div>
+</div>
 {/block}

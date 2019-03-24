@@ -9,8 +9,12 @@
 			<li class='list-group-item'>
 				<div class='row'>
 					<img src="__images__/7.png" />
-					<h3><a href="{:url('admin/blogmanager/index')}">博客管理</a></h3>
+					<h3><a class="collapsed" data-toggle="collapse" data-target="#second_menu">博客管理</a></h3>
 				</div>
+				<ul class="sub_menu list-unstyled collapse text-right" id="second_menu">
+					<li><a href="{:url('admin/blogmanager/index')}">博文列表</a></li>
+					<li><a href="#">博文管理</a></li>
+				</ul>
 			</li>
 			<li class='list-group-item'>
 				<div class='row'>
