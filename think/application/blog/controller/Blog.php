@@ -49,5 +49,11 @@ class Blog extends Controller
             return json(["category"=>$category]);
         }        
     }
+    public function articleManager()
+    {
+        $categorys=Db::name("blog_category")->select();
+        $this->assign("categorys",$categorys);
+        return $this->fetch("articleManager",["title"=>"管理博文"]);       
+    }
 }
 

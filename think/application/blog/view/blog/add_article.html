@@ -10,7 +10,7 @@
 <div id="fh5co-main">
 	<div class="fh5co-narrow-content">
 		<div class="row">
-			<div class="panel panel-default col-sm-10">
+			<div class="panel panel-default">
 				<div class="panel-heading">添加博文</div>
 				<div class="panel-body">
 					<form id="blog_added">
@@ -23,7 +23,7 @@
 						</div>
 						<div class="add-article-box">
 							<div class="add-article-box-title">
-								<span>类别</span>
+								<span>类别</span><a href="#" data-toggle="modal" class="pull-right" data-target="#myModal">添加新类别</a>
 							</div>
 							<div class="add-article-box-content">
 								<div class="form-group category_choice">		<!-- 所有的博文类别 -->
@@ -36,13 +36,6 @@
 						<button type="submit" class="btn btn-default">发布</button>
 					</form>
 				</div>
-			</div>
-			<div class="col-sm-2">
-				<div class="catalog-title">【分类】</div>
-				<ul class="list-unstyled catelogList">
-					<li><a href="#" data-toggle="modal" data-target="#myModal">添加新类别</a></li>
-					<li>C++</li>
-				</ul>
 			</div>
 		</div>
 	</div>
@@ -137,7 +130,7 @@
 			url : "{:url('blog/blog/add_new_category')}",
 			dataType : "json", //json格式
 			data : formData, //如果需要提交附加参数，视情况添加
-			clearForm : false, //成功提交后，清除所有表单元素的值
+			clearForm : false, //成功提交后，清除所有表单元素的值7777777777
 			resetForm : false, //成功提交后，重置所有表单元素的值
 			cache : false,
 			async : false, //同步返回
