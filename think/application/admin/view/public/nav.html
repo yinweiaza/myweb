@@ -13,7 +13,7 @@
 				</div>
 				<ul class="sub_menu list-unstyled collapse text-right" id="second_menu">
 					<li><a href="{:url('admin/blogmanager/index')}">博文列表</a></li>
-					<li><a href="#">博文管理</a></li>
+					<li><a href="{:url('admin/blogmanager/addArticle')}">添加博文</a></li>
 				</ul>
 			</li>
 			<li class='list-group-item'>
@@ -31,7 +31,11 @@
 			<li class='list-group-item'>
 				<div class='row'>
 					<img src="__images__/v10.png" />
-					<h3><a href="{:url('admin/usermanager/index')}">用户管理</a></h3>
+					<h3><a class="collapsed" data-toggle="collapse" data-target="#user_second_menu" href="{:url('admin/usermanager/index')}">用户管理</a></h3>
 				</div>
+				<ul class="list-unstyled collapse text-right" id="user_second_menu">
+					<li><a href="#">添加用户</a></li>
+					<li><a href="#">用户管理</a></li>
+				</ul>
 			</li>
 		</ul>

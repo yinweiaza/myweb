@@ -148,7 +148,8 @@ return [
         '__js__'=>'/public/static/js',
         '__css__'=>'/public/static/css',
         '__fonts__'=>'/public/static//fonts',
-        '__images__'=>'/public/static/images'
+        '__images__'=>'/public/static/images',
+        '__lib__'=>'/public/static/lib'
     ],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',

@@ -1,21 +1,22 @@
 {extend name='public/base'}
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 {block name='content'}
-<div class='panel panel-default content_area'>
+<div class='panel panel-default'>
 	<div class='panel-heading'>
 		<h3 class="panel-title">博客管理</h3>
 	</div>
 	<div class='panel-body'>
 		<form class="form-inline">
 			<div class="form-group">
-				<label for="time">Time</label> <input type="text"
+				<label for="time">Time</label> 
+				<input type="text"
 					class="form-control" placeholder="time">
-			</div>
-			<div class="form-group">
-				<label for="owner">owner</label> <input type="text"
+					
+					<label for="owner">owner</label> 
+					<input type="text"
 					class="form-control" placeholder="owner">
-			</div>
-			<button type="submit" class="btn btn-default">search</button>
+					<button type="submit" class="btn btn-default">search</button>
+			</div>			
 		</form>
 
 		<div class="table_show">
@@ -44,7 +45,7 @@
 						<td>{$vo.content}</td>
 						<td>{$vo.watch_num}</td>
 						<td>{$vo.owner}</td>
-						<td><a>删除</a></td>
+						<td><a href="">修改</a> | <a href="{:url('admin/blogmanager/modifyBlog',['id'=>$vo.blog_id])}">删除</a></td>
 					</tr>
 					{/volist}
 				</tbody>
