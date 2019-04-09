@@ -53,7 +53,27 @@ class Blog extends Controller
     {
         $categorys=Db::name("blog_category")->select();
         $this->assign("categorys",$categorys);
+        $blogs=Db::name("blog")->select();
+        $blogCount=count($blogs);  
+        $pageIndex="";
+        $limit=5;
+        for($bg=0;$bg<$blogCount;$bg++)
+        {
+            if($bg > $limit) break;
+            $msgCount=Db::name("blog_msg")->where("blog_id",$blogs[$bg]["blog_id"])->count();
+            $blogs[$bg]["msg_num"]=$msgCount;
+            if($bg==0)
+                $pageIndex=$pageIndex.'<li class="active"><a href="/public/blog/blog/gotoPage/page/'.($bg+1).'.html">'.($bg+1).'</a></li>';
+            else 
+            $pageIndex=$pageIndex.'<li><a href="/public/blog/blog/gotoPage/page/'.($bg+1).'">'.($bg+1).'</a></li>';
+        }        
+        $this->assign("blogs",$blogs);
+        $this->assign("pageIndex",$pageIndex);
         return $this->fetch("articleManager",["title"=>"管理博文"]);       
+    }
+    public function gotoPage($page)
+    {
+        echo $page;
     }
 }
 

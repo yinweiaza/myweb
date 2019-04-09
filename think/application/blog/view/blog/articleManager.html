@@ -5,56 +5,54 @@
 
 </style>
 {/block}
-{block name='content'}
-<div class="row">
-	<div class="col-sm-10">
-		<div class="panel panel-default">
-			<div class=“panel-heading">所有博文</div>
-			<div class="panel-body">
-				<table class="table table-striped" style='table-layout: fixed;'>
-					<thead>
-						<tr>
-							<th>标题</th>
-							<th>评论数</th>
-							
-							<th>阅读数</th>
-							<th>操作</th>
-							<th>操作</th>
-						</tr>
-					</thead>
-					<tbody>
-						{volist name="blogs" id="vo"}
-							<tr>
-								<td>{$vo.title}</td>
-								<td>{$vo.watch_num}</td>
-								<td>{$vo.msg_num}</td>
-								<td><a href="#">编辑</a></td>
-								<td><a href="#">删除</a></td>
-							</tr>
-						{/volist}
-					</tbody>
-				</table>
+{block name='main'}
+<div id="fh5co-main">
+	<div class="fh5co-narrow-content">
+		<div class="row">
+			<div class="col-sm-10">
+				<div class="panel panel-default">
+					<div class='panel-heading'>
+						<h3 class="panel-title">所有博文</h3>
+					</div>
+					<div class="panel-body">
+						<table class="table table-striped" style='table-layout: fixed;'>
+							<thead>
+								<tr>
+									<th>标题</th>
+									<th>评论数</th>
+									<th>阅读数</th>
+									<th>操作</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								{volist name="blogs" id="vo"}
+								<tr>
+									<td>{$vo.title}</td>
+									<td>{$vo.watch_num}</td>
+									<td>{$vo.msg_num}</td>
+									<td><a href="#">编辑</a></td>
+									<td><a href="#">删除</a></td>
+								</tr>
+								{/volist}
+							</tbody>
+						</table>
+					</div>
+					<ul class="pagination pull-right">
+						<li><a href="#">&laquo;</a></li>
+						{$pageIndex}
+						<li><a href="#">&raquo;</a></li>
+					</ul>
+				</div>
 			</div>
-			<ul class="pagination pull-right">
-				<li><a href="#">&laquo;</a></li>
-				<li class="active"><a href="#">1</a></li>
-				<li class="disabled"><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
+			<div class="col-sm-2">
+				<ul class="list-unstyled">
+					<li><a>编辑分类</a></li>
+					<li><a>未分类</a></li> {volist name="categorys" id="vo"}
+					<li><a href="#">{$vo.category}</a></li> {/volist}
+				</ul>
+			</div>
 		</div>
 	</div>
-	<div class="col-sm-2">
-		<ul>
-			<li><a>编辑分类</a></li>
-			<li><a>未分类</a></li>
-			{volist name="categorys" id="vo"}
-				<li><a href="#">{$vo.category}</a></li>
-			{/volist}
-		</ul>
-	</div>
 </div>
-
 {/block}
