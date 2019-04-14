@@ -1,8 +1,18 @@
 {extend name='public/base'} 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{block name="css"}
+<style type="text/css">
+#fh5co-main .fh5co-narrow-content{
+	width:97%;
+	padding:2em 0;
+}
+</style>
+{/block}
 {block name='main'}
 <div id="fh5co-main">
 	<div class="fh5co-narrow-content">
+		<div class="text-right"><a href="{:url('blog/blog/index')}">返回博客首页</a></div>
+		<div class="clear"></div>
 		<div class='panel panel-default'>
 			<div class='panel-heading'>
 				<h3 class="panel-title">{$blogTitle}</h3>
@@ -11,6 +21,6 @@
 			<div class='post_desc pull-right'>posted @ <span>{$postTime}</span> <a>{$poster}</a> <a>阅读<span class="badge">{$watch_num}</span></a> <a>评论<span class="badge">{$discuss}</span></a> <a>编辑</a>
 			</div>
 		</div>
-	</div>
+	</div>+   
 </div>
 {/block}

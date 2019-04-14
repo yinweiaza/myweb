@@ -1,68 +1,972 @@
-{extend name="blog@public/test" /}
+{extend name="blog@public/base" /}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{block name="css"}
+<style type="text/css">
+         table{border-collapse:collapse;border-spacing:0;table-layout:fixed}
+          th,td{font-size:14px;padding:0}
+          a{text-decoration:none}
+          img{border:0 none}
+          .blue{text-decoration:none;color:#3c3d5d}
+          .chead{width:1002px}
+          .chead .logo{width:698px;height:90px}
+          .chead .txt{width:152px;height:90px}
+          .column{width:100%;line-height:28px;border:1px solid #dedede}
+          .column .hbox{width:100px;height:154px}
+          .column .head{display:block;background-color:#fafafa}
+          .column .box{width:100%;background-color:#ffffff;border-top:2px solid #f2f3f5}
+          .column .box1{width:100%;word-wrap:break-word;color:#ffffff;background-color:#3f4160}
+          .column .box2{width:100%;background-color:#f8f9fa}
+          .column .tba{width:95%;padding:0 30px 15px}
+          .column .tbb{width:95%;padding:0 30px}
+          .column .tb1{width:100%;line-height:28px;color:#333333;word-break:break-all;padding:0 20px}
+          .column .tb2{padding:0 20px}
+          .column .tb3{width:100%;padding:15px 20px 15px 0}
+          .column .gray,.column .gray2{color:#999999;word-break:break-all}
+          .column .gray2{color:#666666}
+          .column .plate1,.column .plate2{width:50%;height:54px;font-size:16px;font-weight:bold;color:#818ba3}
+          .column .plate1{width:100%;padding:0 50px}
+          .column .plate1 .f16{font-size:14px;font-weight:normal;color:#333333}
+          .column .plate1 .f12{font-size:12px;font-weight:normal;color:#999999}
+          .column .keys,.column .keys2{width:150px;line-height:28px;color:#666666}
+          .column .keys2{width:110px}
+          .column .txt1,.column .txt2,.column .txt3{width:815px;line-height:28px;color:#333333;word-break:break-all}
+          .column .txt2{width:345px}
+          .column .txt3{width:auto;max-width:815px;font-size:14px;font-weight:bold}
+          .column .txt4{width:305px;color:#ffffff;word-break:break-all}
+          .column .infr{width:100%;color:#ffffff;table-layout:auto}
+          .column .vam,.column .grcha{vertical-align:middle;margin-left:5px}
+          .column .box1 .vam{margin-right:5px;margin-left:0}
+          .column .name{font-size:24px;padding-bottom:18px}
+          .column .icard{color:#a1a3ae;padding-bottom:18px}
+          .column .con{border-top:1px dotted #ddd}
+          .column .pr20{width:225px;padding-right:20px}
+          .column .time{width:120px;line-height:28px;color:#666666;padding-left:20px}
+          .column .rtbox{width:765px;line-height:28px;color:#333333;padding:0 20px 0 15px;word-break:break-all}
+          .column .hai,.column .guan{line-height:18px;font-size:12px;color:#ffffff;vertical-align:text-top;margin-left:5px;padding:1px 3px;background-color:#3cbe7f;border-radius:2px}
+          .column .guan{background-color:#ff9f20}
+          .column .tag{display:inline-block;word-break:break-all;#display:inline;#zoom:1}
+          .column .all{color:#666;padding:10px 20px;background-color:#fafafa}
+          .column .tit{width:90%;height:40px;color:#666666;padding:0 20px;background-color:#f5f5f5}
+          .column .p15{padding:15px 0}
+          .column .p5{display:inline-block;color:#666666;padding:0 5px;#display:inline;#zoom:1}
+          .column .cell .skill{width:120px;text-align:right;padding-right:15px}
+          .column .cell .skbg,.column .cell .skco{display:inline-block;width:20%;height:18px;line-height:18px;font-size:12px;color:#ffffff;vertical-align:top;margin-top:6px;background-color:#dddddd;border-radius:20px;#display:inline;#zoom:1}
+          .column .cell .skco{width:180px;font-style:normal;margin-top:0;padding-left:10px;background-color:#ff9f20;z-index:3}
+          .column .sl .skco{width:150px}
+          .column .lh .skco{width:120px}
+          .column .yb .skco{width:50px}
+          .column .fbox strong{font-size:14px;font-weight:bold}
+          .column .cha{font-size:12px;font-weight:normal;color:#00457d;margin-left:5px}
+          .column .cha:hover{color:#ff6000}
+          .column .email{width:330px}
+
+          .eng td,.eng .txt3,.eng .fbox strong{font-size:13px;font-family:'Arial'}
+          .eng .txt1,.eng .rtbox,.eng .phd{width:775px;font-size:13px;font-family:'Arial';line-height:28px}
+          .eng .txt2{width:305px}
+          .eng .txt4{width:245px}
+          .eng .cell .txt3{width:120px}
+          .eng .time,.eng .keys{width:110px;font-size:13px;text-align:right}
+          .eng .cell .skill{width:130px}
+          .eng .phd{padding-left:145px}
+          .eng .keys{padding-right:15px}
+          .eng .pr20{width:205px}
+          .eng .pr20 .keys{width:100px}
+          .eng .email{width:270px}
+</style>
+{/block}
 {block name='main'}
 <div id="fh5co-main">
-			<div class="fh5co-narrow-content">
-				<div class="row row-bottom-padded-md">
-					<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-						<img class="img-responsive" src="__images__/img_bg_1.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
-					</div>
-					<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-						<h2 class="fh5co-heading">About Company</h2>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Quisque sit amet efficitur nih. Interdum et malesuada fames ac ante ipsum primis in faucibus interda et malesuada parturient.</p>
-						<p>Quisque sit amet efficitur nih. Interdum et malesuada fames ac ante ipsum primis in faucibus interda et malesuada parturient.</p>
-					</div>
-				</div>
-			</div>
+	<div class="fh5co-narrow-content">
+		<table cellpadding="0" cellspacing="0" align="center" bgcolor="#fff"
+			class="column">
+			<tbody>
+				<tr>
+					<td valign="top"><table xmlns="" cellspacing="0"
+							cellpadding="0" border="0" class="box1">
+							<tbody>
+								<tr>
+									<td class="hbox" align="middle"><img
+										src="http://img01.51jobcdn.com/im/2016/resume/man.png"
+										width="85" height="104" class="head"></td>
+									<td>
+									<table cellspacing="0" cellpadding="0" border="0"
+											class="infr">
+											<tbody>
+												<tr>
+													<td colspan="2" class="name">殷威</td>
+													<td align="right" class="icard">ID:85098901</td>
+												</tr>
+												<tr>
+													<td valign="top" colspan="3">
+														<ul class="list-inline">
+															<li><img class="vam"
+																src="http://img01.51jobcdn.com/im/2016/resume/y1.png"
+																width="20" height="20"><span>正在找工作</span></li>
+															<li><img class="vam"
+																src="http://img01.51jobcdn.com/im/2016/resume/y2.png"
+																width="20" height="20"><span>17512010910</span></li>
+															<li><img class="vam"
+																src="http://img01.51jobcdn.com/im/2016/resume/y3.png"
+																width="20" height="20"><span>1393901022@qq.com</span></li>
+														</ul>
+													</td>
+												</tr>
+												<tr>
+													<td valign="top" colspan="3"><p>
+															<img class="vam"
+																src="http://img01.51jobcdn.com/im/2016/resume/y4.png"
+																width="20" height="20">男<span class="p5">|</span>30
+															岁 (1988/09/10)<span class="p5">|</span>现居住深圳<span
+																class="p5">|</span>4年工作经验
+														</p></td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="table-responsive">
+							<table xmlns="" cellspacing="0" cellpadding="0" border="0"
+							class="box2">
+							<tbody>
+								<tr>
+									<td class="tba"><table cellspacing="0" cellpadding="0"
+											border="0">
+											<tbody>
+												<tr>
+													<td valign="top" class="tb2"><table cellspacing="0"
+															cellpadding="0" border="0">
+															<thead style="height: 0">
+																<tr>
+																	<td valign="top" class="keys"></td>
+																	<td valign="top" class="txt2"></td>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td colspan="2" class="plate2">最近工作</td>
+																</tr>
+																<tr>
+																	<td valign="top" class="keys">职位：</td>
+																	<td valign="top" class="txt2">算法工程师</td>
+																</tr>
+																<tr>
+																	<td valign="top" class="keys">公司：</td>
+																	<td valign="top" class="txt2">深圳市三恩时科技有限公司</td>
+																</tr>
+																<tr>
+																	<td valign="top" class="keys">行业：</td>
+																	<td valign="top" class="txt2">计算机软件</td>
+																</tr>
+															</tbody>
+														</table></td>
+													<td valign="top" class="tb2"><table cellspacing="0"
+															cellpadding="0" border="0">
+															<thead style="height: 0">
+																<tr>
+																	<td valign="top" class="keys"></td>
+																	<td valign="top" class="txt2"></td>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td colspan="2" class="plate2">最高学历/学位</td>
+																</tr>
+																<tr>
+																	<td valign="top" class="keys">专业：</td>
+																	<td valign="top" class="txt2">模式识别与智能系统</td>
+																</tr>
+																<tr>
+																	<td valign="top" class="keys">学校：</td>
+																	<td valign="top" class="txt2">武汉科技大学</td>
+																</tr>
+																<tr>
+																	<td valign="top" class="keys">学历/学位：</td>
+																	<td valign="top" class="txt2">硕士</td>
+																</tr>
+															</tbody>
+														</table></td>
+												</tr>
+											</tbody>
+										</table></td>
+								</tr>
+							</tbody>
+						</table>
+						</div>
+						<div class="table-responsive">
+							<table xmlns="" cellspacing="0" cellpadding="0" border="0"
+							class="box">
+							<tbody>
+								<tr>
+									<td class="plate1">个人信息</td>
+								</tr>
+								<tr>
+									<td class="tba"><table cellspacing="0" cellpadding="0"
+											border="0">
+											<tbody>
+												<tr>
+													<td class="tb2" valign="top"><table cellspacing="0"
+															cellpadding="0" border="0">
+															<tbody>
+																<tr>
+																	<td valign="top" class="keys">QQ号：</td>
+																	<td valign="top" class="txt2">1393901022</td>
+																</tr>
+															</tbody>
+														</table></td>
+													<td class="tb2" valign="top">&nbsp;</td>
+												</tr>
+												<tr>
+													<td class="tb2" valign="top"><table cellspacing="0"
+															cellpadding="0" border="0">
+															<tbody>
+																<tr>
+																	<td valign="top" class="keys">身高：</td>
+																	<td valign="top" class="txt2">176cm</td>
+																</tr>
+															</tbody>
+														</table></td>
+													<td class="tb2" valign="top"><table cellspacing="0"
+															cellpadding="0" border="0">
+															<tbody>
+																<tr>
+																	<td valign="top" class="keys">婚姻状况：</td>
+																	<td valign="top" class="txt2">已婚</td>
+																</tr>
+															</tbody>
+														</table></td>
+												</tr>
+											</tbody>
+										</table></td>
+								</tr>
+							</tbody>
+						</table>
+						</div>
+						<table xmlns="" cellspacing="0" cellpadding="0" border="0"
+							class="box">
+							<tbody>
+								<tr>
+									<td class="plate1">目前年收入 <span>&nbsp;22万元</span><span
+										class="f12">（包含基本工资、补贴、奖金、股权收益等）</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<table xmlns="" cellspacing="0" cellpadding="0" border="0"
+							class="box">
+							<tbody>
+								<tr>
+									<td class="plate1">求职意向</td>
+								</tr>
+								<tr>
+									<td class="tba"><table cellspacing="0" cellpadding="0"
+											border="0">
+											<tbody>
+												<tr>
+													<td class="tb1" colspan="2"><table cellspacing="0"
+															cellpadding="0" border="0">
+															<thead style="height: 0">
+																<tr>
+																	<td valign="top" class="keys"></td>
+																	<td valign="top" class="txt1"></td>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td valign="top" class="keys">个人标签：</td>
+																	<td valign="top" class="txt1"><span class="tag">高级开发工程师&nbsp;&nbsp;</span><span
+																		class="tag">图像算法工程师&nbsp;&nbsp;</span><span
+																		class="tag">校正&nbsp;&nbsp;</span><span class="tag">图像质量&nbsp;&nbsp;</span><span
+																		class="tag">项目经理</span></td>
+																</tr>
+															</tbody>
+														</table></td>
+												</tr>
+												<tr>
+													<td class="tb2" valign="top"><table cellspacing="0"
+															cellpadding="0" border="0">
+															<tbody>
+																<tr>
+																	<td valign="top" class="keys">期望薪资：</td>
+																	<td valign="top" class="txt2">20-30万 元/年</td>
+																</tr>
+															</tbody>
+														</table></td>
+													<td class="tb2" valign="top"><table cellspacing="0"
+															cellpadding="0" border="0">
+															<tbody>
+																<tr>
+																	<td valign="top" class="keys">地点：</td>
+																	<td valign="top" class="txt2"><span class="tag">广州&nbsp;&nbsp;</span><span
+																		class="tag">深圳</span></td>
+																</tr>
+															</tbody>
+														</table></td>
+												</tr>
+												<tr>
+													<td class="tb2" valign="top"><table cellspacing="0"
+															cellpadding="0" border="0">
+															<tbody>
+																<tr>
+																	<td valign="top" class="keys">职能/职位：</td>
+																	<td valign="top" class="txt2"><span class="tag">高级软件工程师
+																			&nbsp;&nbsp;</span><span class="tag">算法工程师 </span><span
+																		class="tag">&nbsp;&nbsp;软件工程师</span></td>
+																</tr>
+															</tbody>
+														</table></td>
+													<td class="tb2" valign="top"><table cellspacing="0"
+															cellpadding="0" border="0">
+															<tbody>
+																<tr>
+																	<td valign="top" class="keys">行业：</td>
+																	<td valign="top" class="txt2"><span class="tag">计算机软件&nbsp;&nbsp;</span><span
+																		class="tag">仪器仪表/工业自动化</span></td>
+																</tr>
+															</tbody>
+														</table></td>
+												</tr>
+												<tr>
+													<td class="tb2" valign="top"><table cellspacing="0"
+															cellpadding="0" border="0">
+															<tbody>
+																<tr>
+																	<td valign="top" class="keys">工作类型：</td>
+																	<td valign="top" class="txt2">全职</td>
+																</tr>
+															</tbody>
+														</table></td>
+													<td class="tb2" valign="top">&nbsp;</td>
+												</tr>
+											</tbody>
+										</table></td>
+								</tr>
+							</tbody>
+						</table>
+						<table xmlns="" cellspacing="0" cellpadding="0" border="0"
+							class="box">
+							<tbody>
+								<tr>
+									<td class="plate1">工作经验</td>
+								</tr>
+								<tr>
+									<td class="tbb"><table cellspacing="0" cellpadding="0"
+											border="0">
+											<tr>
+												<td class="p15"><table cellspacing="0" cellpadding="0"
+														border="0">
+														<tbody>
+															<tr>
+																<td valign="top" class="time">2018/2-至今</td>
+																<td valign="top" class="rtbox"><strong class="txt3">算法工程师</strong><span
+																	class="p5">|</span><span>研发部</span></td>
+															</tr>
+															<tr>
+																<td class="phd tb1" colspan="2"><span>深圳市三恩时科技有限公司</span><span
+																	class="gray">&nbsp;[1年2个月] </span></td>
+															</tr>
+															<tr>
+																<td class="phd tb1 gray2" colspan="2">计算机软件<span
+																	class="p5">|</span>150-500人<span class="p5">|</span>民营公司
+																</td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">工作描述：</td>
+																				<td valign="top" class="txt1">在该公司，主管图像质量综合分析软件（iQstest)的开发：<br>1）作为项目经理，&#x20;主管iQstest开发工作进程；<br>2）&#x20;负责编写iQstest软件架构，&#x20;研究并编写图像质量分析算法；
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="all" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td class="gray">下属人数：2人 <span class="p5">|</span>
+																					汇报对象：副总
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr>
+												<td class="p15 con"><table cellspacing="0"
+														cellpadding="0" border="0">
+														<tbody>
+															<tr>
+																<td valign="top" class="time">2016/4-2018/2</td>
+																<td valign="top" class="rtbox"><strong class="txt3">算法工程师</strong><span
+																	class="p5">|</span><span>校正部</span></td>
+															</tr>
+															<tr>
+																<td class="phd tb1" colspan="2"><span>卡莱特（深圳）云科技有限公司</span><span
+																	class="gray">&nbsp;[1年10个月] </span></td>
+															</tr>
+															<tr>
+																<td class="phd tb1 gray2" colspan="2">计算机软件<span
+																	class="p5">|</span>150-500人<span class="p5">|</span>民营公司
+																</td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">工作描述：</td>
+																				<td valign="top" class="txt1">在该公司，主要负责校正软件算法开发、校正效果研究：<br>1）&#x20;校正软件算法开发：&#x20;负责开发校正算法，设计校正流程；<br>2）&#x20;对校正效果负责：&#x20;主管提升校正效果，优化校正流程；<br>3）&#x20;出外勤：在公司校正业务比较多或者地方校正有问题的情况下，临时辅助校正或解决校正过程中出现的校正效果问题；
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr>
+												<td class="p15 con"><table cellspacing="0"
+														cellpadding="0" border="0">
+														<tbody>
+															<tr>
+																<td valign="top" class="time">2015/3-2016/4</td>
+																<td valign="top" class="rtbox"><strong class="txt3">自动控制工程师/技术员</strong><span
+																	class="p5">|</span><span>研发</span></td>
+															</tr>
+															<tr>
+																<td class="phd tb1" colspan="2"><span>湖北科威聚成自控有限责任公司</span><span
+																	class="gray">&nbsp;[1年1个月] </span></td>
+															</tr>
+															<tr>
+																<td class="phd tb1 gray2" colspan="2">仪器仪表/工业自动化<span
+																	class="p5">|</span>民营公司
+																</td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">工作描述：</td>
+																				<td valign="top" class="txt1">在该公司，主要负责公司嵌入式产品的预科研、自动控制系统设计：<br>1）基于德州&#x20;ARMCortex-A8和安卓系统开发挂卡式PLC；<br>2）以科威PLC、运动控制器、新产品伺服开发自动控制系统；<br>3)&#x20;&#x20;&#x20;负责地方小项目运动控制系统的开发，并进行现场调试，对接客户需求；
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+														</tbody>
+													</table></td>
+											</tr>
+										</table></td>
+								</tr>
+							</tbody>
+						</table>
+						<table xmlns="" cellspacing="0" cellpadding="0" border="0"
+							class="box">
+							<tbody>
+								<tr>
+									<td class="plate1">项目经验</td>
+								</tr>
+								<tr>
+									<td class="tba"><table cellspacing="0" cellpadding="0"
+											border="0">
+											<tr>
+												<td class="p15"><table cellspacing="0" cellpadding="0"
+														border="0">
+														<tbody>
+															<tr>
+																<td valign="top" class="time">2018/1-至今</td>
+																<td valign="top" class="rtbox"><strong>图像质量综合分析软件--iQstest</strong></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">所属公司：</td>
+																				<td valign="top" class="txt1">深圳市三恩时科技有限公司</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">项目描述：</td>
+																				<td valign="top" class="txt1">该项目主要是开发图像质量综合分析软件。该软件通过导入客户拍摄的标版测试卡图像，调用图像质量综合分析模块（ISO或者CIPQ)进行分析，得到图像质量（分辨率、动态范围、畸变、颜色还原等。<br>软件采用qt&#x20;quick&#x20;+&#x20;opencv，以模块进行开发，并设计了定制功能，能够轻松实现工业自动化。
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">责任描述：</td>
+																				<td valign="top" class="txt1">在该项目中，作为项目经理，负责软件架构设计和重要模块的开发。该软件主要采用了模块化编程，&#x20;接口化编程，在技术上，以图像算法为主，采用了轮廓提取、hog+svm定位、傅里叶变换等等，遵循ISO和CIPQ标准。</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr>
+												<td class="p15 con"><table cellspacing="0"
+														cellpadding="0" border="0">
+														<tbody>
+															<tr>
+																<td valign="top" class="time">2016/4-2018/2</td>
+																<td valign="top" class="rtbox"><strong>灯点定位算法；</strong></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">所属公司：</td>
+																				<td valign="top" class="txt1">卡莱特（深圳）云科技有限公司</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">项目描述：</td>
+																				<td valign="top" class="txt1">该算法主要能够稳定、正确、高效的对灯点进行定位。原有算法在出现连排死灯、毛毛虫灯情况时，不能正确的对灯点进行定位。<br>新算法通过对灯点图像进行二值化、提取轮廓，利用灯点特征进行灯点排奇，&#x20;并进行仿射变换将灯点摆正，采用网格法（改进于GIS油田定位算法）对灯点进行排序。新算法解决了多颗相邻死灯、毛毛虫导致的定位失败，即使在遮挡部分的情况下也能很准确的定位，并且在小间距上解决了偏移半个灯位以下很难准确定位问题；
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">责任描述：</td>
+																				<td valign="top" class="txt1">该算法由本人独立进行开发，并实际应用，效果不错，达到了预期目的。</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr>
+												<td class="p15 con"><table cellspacing="0"
+														cellpadding="0" border="0">
+														<tbody>
+															<tr>
+																<td valign="top" class="time">2016/4-2018/2</td>
+																<td valign="top" class="rtbox"><strong>亮度校正效果优化</strong></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">所属公司：</td>
+																				<td valign="top" class="txt1">卡莱特（深圳）云科技有限公司</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">项目描述：</td>
+																				<td valign="top" class="txt1">该项目是为了提升亮度校正效果。通过对佳能raw进行解码得到原始数据文件，基于灯点提取的基础上，将RGB颜色空间转换为YUV颜色空间，以Y为亮度，对所有灯点亮度进行数据分析，按亮度衰减计算亮度校正系数；</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">责任描述：</td>
+																				<td valign="top" class="txt1">该优化由我本人独立完成，进行优化后，&#x20;校正效果提高了一个台阶，已能和诺瓦校正效果进行媲美（客户多次实际比对）；</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr>
+												<td class="p15 con"><table cellspacing="0"
+														cellpadding="0" border="0">
+														<tbody>
+															<tr>
+																<td valign="top" class="time">2016/4-2018/2</td>
+																<td valign="top" class="rtbox"><strong>色度校正</strong></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">所属公司：</td>
+																				<td valign="top" class="txt1">卡莱特（深圳）云科技有限公司</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">项目描述：</td>
+																				<td valign="top" class="txt1">该项目主要是开发色度校正。以积分球、CS2000为采集工具，通过采集每一个灯点的红绿蓝色度坐标，建立灯点大数据，以采集图像灯点红绿蓝刺激值为原始量，通过数据拟合得到实际色度坐标，从而得到转换矩阵。在校正过程中，以亮度均匀性为主，并进行色度均匀性校正。</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">责任描述：</td>
+																				<td valign="top" class="txt1">色度校正由本人独立进行研发，并实际应用于艾比森cr系列（小间距）以及洲明。</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr>
+												<td class="p15 con"><table cellspacing="0"
+														cellpadding="0" border="0">
+														<tbody>
+															<tr>
+																<td valign="top" class="time">2015/3-2016/4</td>
+																<td valign="top" class="rtbox"><strong>鞭炮插引机自动控制系统</strong></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">所属公司：</td>
+																				<td valign="top" class="txt1">湖北科威聚成自控有限责任公司</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">项目描述：</td>
+																				<td valign="top" class="txt1">该项目主要是利用科威运动控制器开发自动鞭炮插引控制系统。通过对运动控制器进行梯形图编程，采用接近开关进行位置控制，在启动、停止时对脉冲进行分段控制，使送盘时匀加速启动，在停盘时又能匀减速停止，避免撞击底部。</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">责任描述：</td>
+																				<td valign="top" class="txt1">在本项目本人作为系统开发者，与亮工共同完成控制系统的编写。<br>在项目我主要负责控制系统的开发，并到客户现场进行演示。该项目比较急，仅有两天半的时间，最终在我和亮工的通宵达旦下的努力下共同完成了鞭炮自动插引机的控制系统开发，并由我协同销售人员到现场给客户进行演示，效果得到客户的认可。
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr>
+												<td class="p15 con"><table cellspacing="0"
+														cellpadding="0" border="0">
+														<tbody>
+															<tr>
+																<td valign="top" class="time">2015/3-2016/4</td>
+																<td valign="top" class="rtbox"><strong>合股机自动控制系统</strong></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">所属公司：</td>
+																				<td valign="top" class="txt1">湖北科威聚成自控有限责任公司</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">项目描述：</td>
+																				<td valign="top" class="txt1">该项目主要是利用新产品伺服开发合股机控制系统。总共8台伺服，每台伺服控制一根铜丝，需要将8股铜线合到一起绕到同一个转盘上，该项目的难点主要在于恒张力控制，并要能高速合股；</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2"><table cellspacing="0"
+																		cellpadding="0" border="0">
+																		<tbody>
+																			<tr>
+																				<td valign="top" class="keys">责任描述：</td>
+																				<td valign="top" class="txt1">在该项目，本人作为系统开发一员，主要负责系统开发研究；<br>在该项目中，本人主要辅助张工完成合股机控制系统的研发。通过伺服位置环三闭环反馈系统控制转盘放卷速度，实时调整脉冲频率，保证连杆稳定在可浮动范围内；
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table></td>
+															</tr>
+														</tbody>
+													</table></td>
+											</tr>
+										</table></td>
+								</tr>
+							</tbody>
+						</table>
+						<table xmlns="" class="box">
+							<tbody>
+								<tr>
+									<td class="plate1">教育经历</td>
+								</tr>
+								<tr>
+									<td class="tba"><table cellspacing="0" cellpadding="0"
+											border="0">
+											<tr>
+												<td class="p15"><table cellspacing="0" cellpadding="0"
+														border="0">
+														<tbody>
+															<tr>
+																<td valign="top" class="time">2012/9-2015/7</td>
+																<td valign="top" class="rtbox"><strong>武汉科技大学</strong></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2">硕士<span class="p5">|</span>模式识别与智能系统
+																</td>
+															</tr>
+														</tbody>
+													</table></td>
+											</tr>
+											<tr>
+												<td class="p15 con"><table cellspacing="0"
+														cellpadding="0" border="0">
+														<tbody>
+															<tr>
+																<td valign="top" class="time">2008/9-2012/5</td>
+																<td valign="top" class="rtbox"><strong>武汉科技大学</strong></td>
+															</tr>
+															<tr>
+																<td class="tb1" colspan="2">本科<span class="p5">|</span>自动化
+																</td>
+															</tr>
+														</tbody>
+													</table></td>
+											</tr>
+										</table></td>
+								</tr>
+							</tbody>
+						</table>
+						<table xmlns="" cellspacing="0" cellpadding="0" border="0"
+							class="box">
+							<tbody>
+								<tr>
+									<td class="plate1">技能特长 <span class="f12">（包括IT技能、语言能力、证书、成绩、培训经历）</span>
+									</td>
+								</tr>
+								<tr>
+									<td class="tbb">
+										<table cellspacing="0" cellpadding="0" border="0">
+											<tbody>
+												<tr>
+													<td class="tit">技能/语言</td>
+												</tr>
+												<tr>
+													<td class="p15">
+														<div class="table-responsive">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<td class="tb2 cell sl" valign="top"><table
+																				cellspacing="0" cellpadding="0" border="0">
+																				<tbody>
+																					<tr>
+																						<td class="skill"><strong class="txt3">Linux</strong></td>
+																						<td valign="top"><span class="skbg"><span
+																								class="skco">熟练</span></span></td>
+																					</tr>
+																				</tbody>
+																			</table></td>
+																		<td class="tb2 cell" valign="top"><table
+																				cellspacing="0" cellpadding="0" border="0">
+																				<tbody>
+																					<tr>
+																						<td class="skill"><strong class="txt3">MFC</strong></td>
+																						<td valign="top"><span class="skbg"><span
+																								class="skco">精通</span></span></td>
+																					</tr>
+																				</tbody>
+																			</table></td>
+																	</tr>
+																	<tr>
+																		<td class="tb2 cell" valign="top"><table
+																				cellspacing="0" cellpadding="0" border="0">
+																				<tbody>
+																					<tr>
+																						<td class="skill"><strong class="txt3">qt&#x20;&#x20;quick</strong></td>
+																						<td valign="top"><span class="skbg"><span
+																								class="skco">精通</span></span></td>
+																					</tr>
+																				</tbody>
+																			</table></td>
+																		<td class="tb2 cell sl" valign="top"><table
+																				cellspacing="0" cellpadding="0" border="0">
+																				<tbody>
+																					<tr>
+																						<td class="skill"><strong class="txt3">Matlab</strong></td>
+																						<td valign="top"><span class="skbg"><span
+																								class="skco">熟练</span></span></td>
+																					</tr>
+																				</tbody>
+																			</table></td>
+																	</tr>
+																	<tr>
+																		<td class="tb2 cell" valign="top"><table
+																				cellspacing="0" cellpadding="0" border="0">
+																				<tbody>
+																					<tr>
+																						<td class="skill"><strong class="txt3">C/C++</strong></td>
+																						<td valign="top"><span class="skbg"><span
+																								class="skco">精通</span></span></td>
+																					</tr>
+																				</tbody>
+																			</table></td>
+																</tbody>
+															</table>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
 
-			<div class="fh5co-narrow-content">
-					<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Our Services</h2>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
-								<div class="fh5co-icon">
-									<i class="icon-settings"></i>
-								</div>
-								<div class="fh5co-text">
-									<h3>Strategy</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
-								<div class="fh5co-icon">
-									<i class="icon-search4"></i>
-								</div>
-								<div class="fh5co-text">
-									<h3>Explore</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-6">
-							<div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
-								<div class="fh5co-icon">
-									<i class="icon-paperplane"></i>
-								</div>
-								<div class="fh5co-text">
-									<h3>Direction</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
-								<div class="fh5co-icon">
-									<i class="icon-params"></i>
-								</div>
-								<div class="fh5co-text">
-									<h3>Expertise</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-		</div>
+										<table cellspacing="0" cellpadding="0" border="0">
+											<tbody>
+												<tr>
+													<td class="tit">证书</td>
+												</tr>
+												<tr>
+													<td class="tb3"><table cellspacing="0" cellpadding="0"
+															border="0">
+															<tbody>
+																<tr>
+																	<td valign="top" class="time"></td>
+																	<td valign="top" class="rtbox"><strong
+																		class="txt3">大学英语四级</strong></td>
+																</tr>
+															</tbody>
+														</table></td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<table xmlns="" cellspacing="0" cellpadding="0" border="0"
+							class="box">
+							<tbody>
+								<tr>
+									<td class="plate1">附加信息</td>
+								</tr>
+								<tr>
+									<td class="tbb"><table cellspacing="0" cellpadding="0"
+											border="0">
+											<tbody>
+												<tr>
+													<td class="tit">附件</td>
+												</tr>
+												<tr>
+													<td class="p15"><table cellspacing="0" cellpadding="0"
+															border="0">
+															<tbody>
+																<tr>
+																	<td class="tb1"><table cellspacing="0"
+																			cellpadding="0" border="0">
+																			<tbody>
+																				<tr>
+																					<td valign="top" class="keys">附件：</td>
+																					<td valign="top" class="txt3"><strong>卡莱特校正软件</strong><a
+																						target="_blank" class="cha"
+																						href="http://i.51job.com/resume/ajax/image.php?type=image&amp;userid=85098901&amp;attachid=46917115&amp;key=6afc94bbbf423b8797601933080b0eb6">
+																							查看&gt; </a></td>
+																				</tr>
+																				<tr>
+																					<td valign="top" class="keys">附件描述：</td>
+																					<td valign="top" class="txt1">校正软件：&#x20;按照校正对象来分，有整屏、单箱校正两种校正方式；&#x20;按照校正方式来分，则有亮度校正、色度校正两种校正方式。通过连接校正相机、光枪，软件控制相机、LED屏进行实时的三色采集，基于光学进行亮度、色度的反估算、以亮度均匀性、色度均匀性为目标，采取控制LED的电流、频率大小从而调整灯点的亮度、混色。</td>
+																				</tr>
+																			</tbody>
+																		</table></td>
+																</tr>
+															</tbody>
+														</table></td>
+												</tr>
+												<tr>
+													<td class="p15 con"><table cellspacing="0"
+															cellpadding="0" border="0">
+															<tbody>
+																<tr>
+																	<td class="tb1"><table cellspacing="0"
+																			cellpadding="0" border="0">
+																			<tbody>
+																				<tr>
+																					<td valign="top" class="keys">附件：</td>
+																					<td valign="top" class="txt3"><strong>图像质量分析软件--iQstest</strong><a
+																						target="_blank" class="cha"
+																						href="http://i.51job.com/resume/ajax/image.php?type=image&amp;userid=85098901&amp;attachid=46923280&amp;key=6afc94bbbf423b8797601933080b0eb6">
+																							查看&gt; </a></td>
+																				</tr>
+																				<tr>
+																					<td valign="top" class="keys">附件描述：</td>
+																					<td valign="top" class="txt1">图像质量分析软件：&#x20;通过导入用户拍摄的标版测试卡图像，调用图像质量分析模块（遵循ISO或CIPQ）对图像进行分析，得到图像质量指标，譬如：&#x20;分辨率、动态范围、颜色还原、畸变等等。</td>
+																				</tr>
+																			</tbody>
+																		</table></td>
+																</tr>
+															</tbody>
+														</table></td>
+												</tr>
+											</tbody>
+										</table></td>
+								</tr>
+							</tbody>
+						</table></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
 {/block}
