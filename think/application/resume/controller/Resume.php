@@ -8,4 +8,9 @@ class Resume extends Controller
         $this->assign("title", "骑着蜗牛去看海的简历");
         return $this->fetch();
     }
+    
+    function edit()
+    {
+        return $this->fetch("editResume", ['title'=>"编辑简历"]);
+    }
 }
