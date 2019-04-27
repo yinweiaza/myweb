@@ -30,7 +30,7 @@
 .box .tit{position:relative;height:40px;line-height:40px;color:#666;padding:0 30px;background-color:#f5f5f5}
 .box .none{display:block;width:380px;height:30px;line-height:30px;color:#b0b0b0;margin:15px auto;padding-left:35px;background-position:-450px -240px}
 .box .con{display:inline-block;width:100%;line-height:30px;color:#666;padding:15px}
-.box .bd{border-top:1px dotted #ddd}
+.box .bd{border-top:1px dotted #ddd;position:relative;height:auto;}
 .box .bd:first-child{border-top:none}
 .box .con strong{display:block;width:550px;font-weight:bold;color:#333}
 .box .con .pp{padding:0 15px}
@@ -128,6 +128,7 @@
 .box .edit{position:relative;height:auto;}
 .box .edit_delete{position:absolute;display:none;width: 80px;height:25px;right:10px;top:15px;overflow:hidden;}
 .box .edit.mm{border:1px solid #F22;}
+.box .bd.mm{border:1px solid #F22;}
 
 .box .new_add{display:block;width:583px;margin:0 auto;}
 .box .red_bd{position:relative;border:1px solid #F00;padding:10px 0px;margin:10px 0px;}
@@ -138,6 +139,11 @@
 .box .new_add  .ip2{width:223px;}
 .box .new_add  .ip3{width:223px;margin-left:13px;}
 .box .new_add  .ip4{width:100px;}
+.box .new_add  .ip5{width:450px;}
+.box .new_add  .noi{margin-left:8px;}
+.box .new_add  .choose{border:1px solid #ccc;width:450px;height:30px;margin-left:93px;}
+.box .new_add  .choose:hover{background-color:#ccc; cursor:pointer;}
+.box .new_add  .word{line-height:30px;width:40px; margin:0 auto;}
 .box .new_add  .lb{width:80px; margin-left:20px;margin-right:15px;}
 .box .new_add  .btns{text-align:center;}
 .box .new_add  textarea{width:395px;margin-left:8px;}
@@ -150,95 +156,16 @@
 	<div class="fh5co-narrow-content">
 		<div class="column Fm" id="maincontent">
 			<div class="box mk top_wrap" id="basedetail">
-				<div class="head" id="Basic">
-					<div class="face">
-						<img src="http://img01.51jobcdn.com/im/2016/resume/man.png"
-							width="85" height="104" alt="头像">
-					</div>
-					<div class="name">殷威</div>
-					<p class="at">现居住深圳&nbsp;│&nbsp;4年工作经验&nbsp;│&nbsp;男&nbsp;│&nbsp;30
-						岁 (1988/09/10)&nbsp;│&nbsp;目前正在找工作</p>
-					<div class="tab">
-						<span class="email icons at" title="1393901022@qq.com">1393901022@qq.com</span>&nbsp;<span
-							class="tel icons">17512010910</span>
-					</div>
-					<div class="abox">
-						<div class="mbox" onclick="showMoreClickEvent(this)">
-							<span class="icons">更多展开</span><em class="icons"></em>
-						</div>
-						<div class="all">
-							<div class="e e2">
-								<label>证件号</label><i>：</i>
-								<div>420821198809103013 (身份证)</div>
-							</div>
-							<div class="e e2">
-								<label>婚姻状况</label><i>：</i>
-								<div>已婚</div>
-							</div>
-							<div class="e e2">
-								<label>身高</label><i>：</i>
-								<div>176cm</div>
-							</div>
-							<div class="e e2">
-								<label>QQ号</label><i>：</i>
-								<div>1393901022</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-					</div>
+				<div class="head" id="Basic">					
+					{$base_info}	
 				</div>
-				<span class="ed_icon_blue icons" id="basedetail_edit"
-					onclick="editButtonClick(this)"></span><span
-					class="ed_icon_yellow icons"></span>
-			</div>
-			<div class="box m1 top_wrap" id="salary">
-				<div class="hd">
-					<strong class="icons"><em class="e0 icons"></em>目前年收入 </strong>&nbsp;<span
-						class="f16">22万元 </span><span class="f12">（包含基本工资、补贴、奖金、股权收益等）</span>
-				</div>
-				<span class="ed_icon_blue icons" id="salary_edit"
-					onclick="editButtonClick(this)"></span><span
-					class="ed_icon_yellow icons"></span>
 			</div>
 			<div class="box mk top_wrap" id="intention">
 				<div class="hd">
 					<strong class="icons" id="Career"><em class="e1 icons"></em>求职意向</strong>
 				</div>
-				<div class="bd">
-					<div class="e">
-						<label>期望薪资</label><i>：</i>
-						<div class="inline-block">20-30万元/年</div>
-					</div>
-					<div class="e">
-						<label>地点</label><i>：</i>
-						<div>
-							<span class="ong">广州&nbsp;&nbsp;</span><span class="ong">深圳</span>
-						</div>
-					</div>
-					<div class="e">
-						<label>职能/职位</label><i>：</i>
-						<div>
-							<span class="ong">高级软件工程师 &nbsp;&nbsp;</span><span class="ong">算法工程师
-							</span><span class="ong">&nbsp;&nbsp;软件工程师</span>
-						</div>
-					</div>
-					<div class="e">
-						<label>行业</label><i>：</i>
-						<div>
-							<span class="ong">计算机软件&nbsp;&nbsp;</span><span class="ong">仪器仪表/工业自动化</span>
-						</div>
-					</div>
-					<div class="e">
-						<label>个人标签</label><i>：</i>
-						<div>
-							<span class="ong">高级开发工程师&nbsp;&nbsp;</span><span class="ong">图像算法工程师&nbsp;&nbsp;</span><span
-								class="ong">校正&nbsp;&nbsp;</span><span class="ong">图像质量&nbsp;&nbsp;</span><span
-								class="ong">项目经理</span>
-						</div>
-					</div>
-					<div class="con">
-						<div class="clear"></div>
-					</div>
+				<div class="bd" id="jobExpect">					
+					{$Career_expected}
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -350,23 +277,6 @@
 						onclick="newButtonClick(this);" class="add icons">新增荣誉</a>
 				</div>
 				<div id="schoolaward">
-					<div class="red_bd">
-						<form class="new_add" role="form">
-							<div class="form-group">
-								<label>时间</label> <input type="text" name="time">
-							</div>
-							<div class="form-group">
-								<label>奖项</label> <input type="text" name="award">
-							</div>
-							<div class="form-group">
-								<label>级别</label> <input type="text" name="level">
-							</div>
-							<div class="btns">
-								<button type="submit" class="save">保存</button>
-								<button type="cancel" class="cancel">取消</button>
-							</div>							
-						</form>
-					</div>
 					{$schoolaward_empty}
 					{volist name="schoolaward_history" id="vo"}
 					<div class="bd" id="schoolaward_view_67433000">
@@ -384,29 +294,6 @@
 						onclick="newButtonClick(this);" class="add icons">新增职务</a>
 				</div>
 				<div id="schooljob">
-				<div class="red_bd">
-				<form class="form-horizontal new_add" role="form">
-					<div class="form-group">
-						<label>时间</label> <i>*</i> <input class="ip1 p2" name="start"
-							type="text" readonly="readonly"> <span>到</span> <input
-							name="end" class="ip1" type="text" readonly="readonly"
-							placeholder="至今">
-					</div>
-					<div class="form-group">
-						<label>职务</label>
-						<i>*</i>
-						<input type="text" name="job">					
-					</div>
-					<div class="form-group">
-						<label>职务描述</label>
-						<textarea></textarea>
-					</div>
-					<div class="btns">
-						<button type="submit" class="save">保存</button>
-						<button type="cancel" class="cancel">取消</button>
-					</div>
-				</form>
-				</div>
 				{$schooljob_empty} 
 				{volist name="schooljob_history" id="vo"}
 				<div class="bd" id="schooljob_{$vo.resume_id}">
@@ -433,25 +320,7 @@
 						onclick="newButtonClick(this);" class="add icons">新增技能/语言</a>
 				</div>
 				<div id="skilllanguage">
-				{$skilllanguage_empty}
-				<div class="red_bd">
-					<form class="form-horizontal new_add" role="form">
-						<div class="form-group">
-							<label>技能/语言</label>
-							<i>*</i>
-							<input type="text" name="skill">
-						</div>
-						<div class="form-group">
-							<label>掌握程度</label>
-							<i>*</i>
-							<input type="text" name="master_level" name="level">
-						</div>
-						<div class="btns">
-							<button type="submit" class="save">保存</button>
-							<button type="cancel" class="cancel">取消</button>
-						</div>
-					</form>
-				</div>
+				{$skilllanguage_empty}				
 					{volist name="skilllanguage_history" id="vo"}
 					<div class="bd" id="skilllanguage_view_{$vo.id}">
 						<div class="con edit">
@@ -471,29 +340,7 @@
 						onclick="newButtonClick(this);" class="add icons">新增证书</a>
 				</div>
 				<div id="skillcertification">
-				{$skillcertification_empty}
-				<div class="red_bd">
-					<form class="form-horizontal new_add" role="form">
-						<div class="form-group">
-							<label>获得时间</label>
-							<i>*</i>
-							<input type="text" name="time">
-						</div>
-						<div class="form-group">
-							<label>证书</label>
-							<i>*</i>
-							<input type="text" name="certifications">
-						</div>
-						<div class="form-group">
-							<label>成绩</label>
-							<input type="text" name="scoce">
-						</div>
-						<div class="btns">
-							<button type="submit" class="save">保存</button>
-							<button type="cancel" class="cancel">取消</button>
-						</div>
-					</form>
-				</div>
+				{$skillcertification_empty}				
 				{volist name="skillcertification_history" id="vo"}
 					<div class="bd" id="skillcertification_view_{$vo.resume_id}">
 						<div class="con edit">
@@ -515,43 +362,28 @@
 						onclick="newButtonClick(this);" class="add icons">新增培训</a>
 				</div>
 				<div id="skilltrain">
-					{$skilltrain_empty}
-					<div class="red_bd">
-						<form class="form-horizontal new_add" role="form">
-							<div class="form-group">
-								<label>时间</label> <i>*</i> <input class="ip1" name="start"
-									type="text" readonly="readonly"> <span>到</span> <input
-									name="end" class="ip1" type="text" readonly="readonly"
-									placeholder="至今">
-							</div>
-							<div class="form-group">
-								<label>培训课程</label>
-								<i>*</i>
-								<input type="text" name="course">
-							</div>
-							<div class="form-group">
-								<label>培训机构</label>
-								<i>*</i>
-								<input type="text" name="organ">
-								<label>培训地点</label>
-								<input type="text" name="">
-							</div>
-							<div class="form-group">
-								<label>培训描述</label>
-								<textarea></textarea>
-							</div>
-							<div class="btns">
-								<button type="submit" class="save">保存</button>
-								<button type="cancel" class="cancel">取消</button>
-							</div>
-						</form>
-					</div>
+					{$skilltrain_empty}					
 					{volist name="skilltrain_history" id="vo"}
-					
-					{/volist}
-					<div class="none icons" id="skilltrain_empty">完善培训经历，展现更多专业技能，让HR更了解你！</div>
+					<div class="bd" id="skilltrain_view_".{$vo.resume_id}>
+						<div class="con edit">
+							<div class="sp">
+								<span>{$vo.start_time}-{$vo.end_time}</span> <strong class="w180 at" title="ryey">{$vo.course}</strong>
+								<span class="cl3 w295 at" >{$vo.orgination}
+									(地点：{$vo.adress})</span>
+							</div>
+							<div class="e">
+								<label>培训描述</label><i>：</i>
+								<div>{$vo.course_description}</div>
+							</div>
+							<div class="clear"></div>
+							<div class="edit_delete">
+								<a>编辑</a><a> 删除</a>
+							</div>
+						</div>
+						</div>
+						{/volist}
+					</div>
 				</div>
-			</div>
 			<div class="box mk">
 				<div class="hd">
 					<strong class="icons" id="Additional"><em class="e7 icons"></em>附加信息
@@ -561,14 +393,14 @@
 					<span>附件</span><a id="additionattach_new"
 						onclick="newButtonClick(this);" class="add icons">新增附件</a>
 				</div>
-				<div id="additionattach">
-				{$additionattach_empty} 
+				<div id="additionattach">					
+					{$additionattach_empty} 
 				{volist name="additionattach_history" id="vo"}
-				<div class="bd" id="additionattach_view_46917115">
+				<div class="bd" id="additionattach_view_".{$vo.resume_id}>
 					<div class="con edit">
 						<div class="e">
 							<label>附件</label><i>：</i><strong class="fbox cha"><span
-								class="at">卡莱特校正软件</span><input type="hidden" value="1"
+								class="at">{$vo.attach_name}</span><input type="hidden" value="1"
 								name="additionattach_1_46917115" id="additionattach_1_46917115"><a
 								href="javascript:void(0);"
 								onclick="viewPicture('46917115', 'http://i.51job.com/resume/ajax/image.php?type=attachment&amp;userid=85098901&amp;attachid=46917115')">
@@ -578,36 +410,15 @@
 						</div>
 						<div class="e">
 							<label>附件描述</label><i>：</i>
-							<div>校正软件：&#x20;按照校正对象来分，有整屏、单箱校正两种校正方式；&#x20;按照校正方式来分，则有亮度校正、色度校正两种校正方式。通过连接校正相机、光枪，软件控制相机、LED屏进行实时的三色采集，基于光学进行亮度、色度的反估算、以亮度均匀性、色度均匀性为目标，采取控制LED的电流、频率大小从而调整灯点的亮度、混色。</div>
+							<div>{$vo.attach_description}</div>
 						</div>
 						<div class="clear"></div>
-						<span class="ed_icon"><em class="edi icons"
-							id="additionattach_edit_46917115" onclick="editButtonClick(this)"></em><em
-							class="del icons" id="additionattach_delete_46917115"
-							onclick="deleteButtonClick(this)"></em></span>
+							<div class="edit_delete">
+								<a>编辑</a><a> 删除</a>
+							</div>
 					</div>
 				</div>
 				{/volist}
-
-					<div class="bd" id="additionattach_view_46923280">
-						<div class="con edit">
-							<div class="e">
-								<label>附件</label><i>：</i><strong class="fbox cha"><span
-									class="at">图像质量分析软件--iQstest</span><input type="hidden"
-									value="1" name="additionattach_1_46923280"
-									id="additionattach_1_46923280"><a
-									href="javascript:void(0);"
-									onclick="viewPicture('46923280', 'http://i.51job.com/resume/ajax/image.php?type=attachment&amp;userid=85098901&amp;attachid=46923280')">
-										查看&gt; </a>
-									<div class="clearfix"></div>
-									<div class="clear"></div></strong>
-							</div>
-							<div class="e">
-								<label>附件描述</label><i>：</i>
-								<div>图像质量分析软件：&#x20;通过导入用户拍摄的标版测试卡图像，调用图像质量分析模块（遵循ISO或CIPQ）对图像进行分析，得到图像质量指标，譬如：&#x20;分辨率、动态范围、颜色还原、畸变等等。</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -617,6 +428,10 @@
 {block name="js"}
 <script type="text/javascript">
 $(".edit").hover(function(){
+	$(this).addClass("mm");	$(this).find(".edit_delete").css("display","block");
+},function(){$(this).removeClass("mm");$(this).find(".edit_delete").css("display","none");}
+)
+$(".bd").hover(function(){
 	$(this).addClass("mm");	$(this).find(".edit_delete").css("display","block");
 },function(){$(this).removeClass("mm");$(this).find(".edit_delete").css("display","none");}
 )
@@ -668,6 +483,40 @@ function newButtonClick(pObject)
 				}
 				$("#" + szType).prepend(data);
 				$(".add").css("");
+			}
+		});
+	}
+	
+function baseInfoEditClicked(pObject)
+{
+	var szType = pObject.id.split('_')[0];
+	var isDisable= $(".add").hasClass("disable_add");
+	if(!isDisable){
+		$(".add").addClass("disable_add");
+	}else
+		return;
+
+
+	$.ajax({
+			url : "{:url('resume/resume/editBaseInfo')}",
+			type : "post",
+			data : {
+				"type" : szType
+			},
+			dataType : "json",
+			cache : false,
+			async : false,
+
+			success : function(data) {
+				if (data) {
+					if (szType == "base") {
+						$("#Basic").html("");
+						$("#Basic").append(data);
+					} else if (szType == "carrer") {
+						$("#jobExpect").html("");
+						$("#jobExpect").html(data);
+					}
+				}
 			}
 		});
 	}
