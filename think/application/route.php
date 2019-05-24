@@ -1,4 +1,5 @@
 <?php
+
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
@@ -9,6 +10,16 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
+use think\Route;
+Route::rule('resume/:id', 'resume/resume/index');
+Route::rule([
+    'admin'=>'admin/admin/index',
+    'index'=>'index',
+    'blog'=>'blog/blog/index',
+    'photo'=>'portfolio/portfolio/index',
+    'resume'=>'resume/resume/resume',
+    'contact'=>'contact/contact/index'
+],'','GET');
 return [
     '__pattern__' => [
         'name' => '\w+',

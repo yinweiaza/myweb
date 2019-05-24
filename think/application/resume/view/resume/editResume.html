@@ -156,17 +156,13 @@
 	<div class="fh5co-narrow-content">
 		<div class="column Fm" id="maincontent">
 			<div class="box mk top_wrap" id="basedetail">
-				<div class="head" id="Basic">					
-					{$base_info}	
-				</div>
+				<div class="head" id="Basic">{$base_info}</div>
 			</div>
 			<div class="box mk top_wrap" id="intention">
 				<div class="hd">
 					<strong class="icons" id="Career"><em class="e1 icons"></em>求职意向</strong>
 				</div>
-				<div class="bd" id="jobExpect">					
-					{$Career_expected}
-				</div>
+				<div class="bd" id="jobExpect">{$Career_expected}</div>
 			</div>
 			<div class="clearfix"></div>
 			<div class="box mk">
@@ -457,7 +453,9 @@ function editButtonClick(pObject)
 		}
 	});
 }
-
+/**
+ * 新增项；
+ */
 function newButtonClick(pObject)
 {
 	var szType = pObject.id.split('_')[0];
@@ -486,7 +484,9 @@ function newButtonClick(pObject)
 			}
 		});
 	}
-	
+/**
+ * 基本信息编写；
+ */
 function baseInfoEditClicked(pObject)
 {
 	var szType = pObject.id.split('_')[0];
@@ -506,7 +506,6 @@ function baseInfoEditClicked(pObject)
 			dataType : "json",
 			cache : false,
 			async : false,
-
 			success : function(data) {
 				if (data) {
 					if (szType == "base") {
@@ -520,5 +519,31 @@ function baseInfoEditClicked(pObject)
 			}
 		});
 	}
+	
+/**
+ * 按保存按钮；
+ */
+function saveButtonClicked(pObject)
+{
+	var saveId = pObject.id;
+	var formData = $("#"+ saveId + "_form").serializeArray();  //serializeArray返回json, serialize返回string;
+	var obj = {};				//对象转json;
+	$.each(formData, function(i,v){
+		obj[v.name] = i.value;
+	});
+	obj["id"] = saveId;
+	$.ajax({
+		url:"{:url('resume/resume/saveSection')}",
+		type:"post",
+		data:obj,
+		dataType:"json",
+		cache : false,
+		async : false,
+		success : function(data) {
+			if(data)
+				alert(data);
+		}
+	});
+}
 </script>
 {/block}

@@ -76,13 +76,48 @@
 {/block}
 {block name='main'}
 <div id="fh5co-main">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">新建简历</h4>
+				</div>
+				<form>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>姓名:</label><input type="text" name="name">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="cancel" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="submit" class="btn btn-primary">新建</button>
+					</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
 	<div class="fh5co-narrow-content">
-		<div class="pull-right dropdown"><a href="{:url('resume/resume/edit')}" class="dropdown-toggle" data-toggle="dropdown">编辑</a>
-		<ul class="dropdown-menu">
-			{volist name="resumes" id="vo"}
-				<li><a href='"{:url("resume/resume/edit",["resumeId"=>'.{$vo.resume_id}.'])}"'></a></li>
-			{/volist}
-		</ul>
+		<div class="pull-right">
+		<ul class="list-inline">
+				<li><a data-toggle="modal" data-target="#myModal" href="#">新建简历</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">所有简历</a>
+					<ul class="dropdown-menu">
+						{volist name="resumes" id="vo"}
+						<li><a href='"{:url("resume/resume/index",["resumeId"=>'.{$vo.resume_id}.'])}"'></a></li>
+						{/volist}
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">编辑</a>
+					<ul class="dropdown-menu">
+						{volist name="resumes" id="vo"}
+						<li><a href='"{:url("resume/resume/edit",["resumeId"=>'.{$vo.resume_id}.'])}"'></a></li>
+						{/volist}
+					</ul></li>
+			</ul>
 		</div>
 		<table cellpadding="0" cellspacing="0" align="center" bgcolor="#fff"
 			class="column">

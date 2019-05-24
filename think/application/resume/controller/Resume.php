@@ -4,20 +4,59 @@ use think\Controller;
 use think\Db;
 use think\Session;
 class Resume extends Controller
-{
+{   
+    /**
+     * 所有简历， 列表；
+     * @return mixed|string
+     */
+    public function resume()
+    {
+        $allresumes=Db::name("resume_base_info")->select();
+        $this->assign("resumes", $allresumes);
+        return $this->fetch("addResume",['title'=>"所有简历"]);
+    }
+    
+    /**
+     * 显示简历；
+     * @param unknown $resumeId
+     * @return mixed|string
+     */
     public function index($resumeId)
     {
-        $this->showResume($resumeId);
         $allresumes=Db::name("resume_base_info")->column("resume_title");
+        if(count($allresumes) < $resumeId)
+        {
+            $this->error("no resume");
+        }
+        $this->showResume($resumeId);        
         $this->assign("resumes",$allresumes);
         $this->assign("title", "骑着蜗牛去看海的简历");
         return $this->fetch();
     }
     
+    /**
+     * 列出所有的简历;
+     * @return \think\response\Json
+     */
     function listResumes()
     {
         $base=Db::name("resume_base_info")->field("resume_id","resume_title")->select();
         return json($base);
+    }
+    
+    /**
+     * 导航栏点击调用
+     * @return \think\response\Json
+     */
+    function showAvailResume()
+    {
+        $all = Db::name("resume_base_info")->field("resume_id","resume_name","resume_title")->select();
+        if(count($all) < 0)
+        {            
+            return json();
+        }else{            
+            return json($all);
+        }       
     }
     
     //显示简历
@@ -28,25 +67,32 @@ class Resume extends Controller
         
     }
     
+    /**
+     * 新建简历；
+     * @return mixed|string
+     */
     function newCreate()
     {
         $requestData = $this->request->post();
-        $resumeTitle=$requestData["resume_title"];
+        $resumeTitle=$requestData["resume_title"];        
         if($resumeTitle)
         {
+            
             if(Db::name("resume_base_info")->where("resume_title",$resumeTitle)->count())
             {
                 $this->error("this name exists");
                 $this->assign("title", "骑着蜗牛去看海的简历");
                 return  $this->fetch("index");
-            }
+            }            
             $maxId = Db::name("resume_base_info")->max("resume_id");
-            $data=["resume_id"=>$maxId+1, "resume_title"=>$resumeTitle];
-            Db::name("resume_base_info")->insert($date);
+            
+            $data=["resume_id"=>$maxId+1, "resume_title"=>$resumeTitle];            
+            Db::name("resume_base_info")->insert($data);            
             session("resumeId",$maxId+1);
+            
             $this->initSection();
             $baseInfoHtml='<div class="red_bd">
-						<form class="form-horizontal new_add" role="form">
+						<form onsumbit="return false;" class="form-horizontal new_add" id="base_info_form" role="form">
 							<div class="form-group">
 								<div class="pull-left"><img src="http://img01.51jobcdn.com/im/2016/resume/man.png"
 							width="85" height="104" alt="头像"></div>
@@ -78,17 +124,52 @@ class Resume extends Controller
 							</div>
 							<div class="clearfix"></div>
 							<div class="btns">
-								<button type="submit" class="save">保存</button>
+								<button type="submit" id="base_info" class="save" onclick="saveButtonClicked(this);">保存</button>
 								<button type="cancel" class="cancel">取消</button>
 							</div>
 						</form>
+					</div>';  
+            $carrer_html='<div class="e">
+						<label>期望薪资</label><i>：</i>
+						<div class="inline-block"></div>
+					</div>
+					<div class="e">
+						<label>地点</label><i>：</i>
+						<div>
+							<span class="ong"></span>
+						</div>
+					</div>
+					<div class="e">
+						<label>职能/职位</label><i>：</i>
+						<div>
+							<span class="ong"></span>
+						</div>
+					</div>
+					<div class="e">
+						<label>行业</label><i>：</i>
+						<div>
+							<span class="ong"></span>
+						</div>
+					</div>
+					<div class="e">
+						<label>个人标签</label><i>：</i>
+						<div>
+							<span class="ong"></span>
+						</div>
+					</div>
+					<div class="con">
+						<div class="clear"></div>
 					</div>';
             $this->assign("base_info",$baseInfoHtml);
-            return $this->fetch("edit_Resume", ['title'=>"编辑简历"]);
+            $this->assign("Career_expected",$carrer_html);
+            return $this->fetch("editResume", ['title'=>"编辑简历"]);
         }else 
             $this->error("please set the resume title!!");
     }
     
+    /**
+     * 初始化区域；
+     */
     protected function initSection()
     {
         $section_name=array("work","project","education","schooljob","skilllanguage","schoolaward","skillcertification","skilltrain","additionattach");
@@ -103,6 +184,11 @@ class Resume extends Controller
         }
     }
     
+    /**
+     * 编辑指定的简历；
+     * @param unknown $resumeId
+     * @return mixed|string
+     */
     function edit($resumeId)
     {       
         if($resumeId < 0) $this->edit("该简历不存在!");
@@ -188,6 +274,10 @@ class Resume extends Controller
         $this->assign("Career_expected", $carrer_html);
         return $this->fetch("editResume", ['title'=>"编辑简历"]);
     }
+    
+    /**
+     * 编辑选择的区域；
+     */
     function editSection()
     {
         // box分；
@@ -197,6 +287,10 @@ class Resume extends Controller
         $record = Db::name("resume_work_histroy")->where("id", $id)->find(); 
     }
     
+    /**
+     * 添加新的历史；
+     * @return \think\response\Json
+     */
     function addNewHistory()
     {
         $requestData = $this->request->post();
@@ -455,6 +549,10 @@ class Resume extends Controller
         return json($newAddHtml);
     }
     
+    /**
+     * 编写基本信息；
+     * @return \think\response\Json
+     */
     function editBaseInfo()
     {
         $requestData = $this->request->post();
@@ -544,4 +642,13 @@ class Resume extends Controller
         return json($baseInfoHtml);
     }
     
+    public function saveSection()
+    {
+        $data = $this->request->post();
+        switch (json($data["id"]))
+        {
+            case :
+                break;
+        }
+    }
 }

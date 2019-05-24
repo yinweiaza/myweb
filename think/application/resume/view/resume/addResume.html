@@ -1,0 +1,90 @@
+{extend name='blog@public/base'}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{block name='css'} 
+<style type="text/css">
+#myModal .np{width: 120px; }
+</style>
+{/block}
+{block name='main'}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">新建简历</h4>
+			</div>
+			<form id="new_resume" method="post" action="{:url('resume/resume/newCreate')}">
+				<div class="modal-body">
+					<div class="form-group">
+						<label class="np text-right">简历名：</label><input class="form-control" type="text" name="resume_title">
+					</div>
+					<div class="form-group">
+						<label class="np text-right">姓   名：</label><input class="form-control" type="text" name="name">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="form-group">
+						<button type="cancel" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="submit" class="btn btn-primary">新建</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal -->
+</div>
+<div id="fh5co-main">
+	<div class="fh5co-narrow-content">
+		<div class="panel panel-default">
+			<div class='panel-heading'>
+				<h3 class="panel-title">所有简历<div class="pull-right"><a data-toggle="modal" data-target="#myModal" href="#">添加简历</a></div></h3>							
+			</div>
+			<div class="panel-body">
+				<table class="table table-striped" style='table-layout: fixed;'>
+					<thead>
+						<tr>
+							<th>编号</th>
+							<th>简历名</th>
+							<th>姓名</th>
+							<th>操作</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					{volist name="resumes" id="vo"}
+						<tr>
+							<td>{$vo.resume_id}</td>
+							<td>{$vo.resume_title}</td>
+							<td>{$vo.resume_name}</td>
+							<td><a href="#">查看</a></td>
+							<td><a href="#">编辑</a> | <a href="#">删除</a></td>
+						</tr>
+					{/volist}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}
+{block name='js'}
+<script type="text/javascript">
+$().ready(function() {
+	$("#new_resume").validate({
+		rules:{
+			resume_title:{
+				required:true,
+				minlength:2,
+				maxlength:64
+			},
+			name:{
+				required:true,					
+			}
+		}
+	});
+});
+</script>
+{/block}
