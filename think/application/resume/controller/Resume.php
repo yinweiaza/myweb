@@ -3,8 +3,20 @@ namespace app\resume\controller;
 use think\Controller;
 use think\Db;
 use think\Session;
+use app\resume\model\ResumeBaseInfo;
+use app\resume\controller\HtmlExamp;
 class Resume extends Controller
 {   
+	
+	protected $baseInfoTabel;
+	protected $htmlExamp;
+	
+	public function __construct(){
+		$this->baseInfoTabel = new ResumeBaseInfo();
+		$this->htmlExamp = new HtmlExamp();
+		parent::__construct();
+	}
+	
     /**
      * 所有简历， 列表；
      * @return mixed|string
@@ -183,6 +195,14 @@ class Resume extends Controller
                     $this->assign($section_name[$idx]."_empty", '');
         }
     }
+        
+
+  
+    protected function  carrerHtml($data, $name)
+    {    	
+    	$html = '';
+    	return $html;
+    }
     
     /**
      * 编辑指定的简历；
@@ -198,78 +218,8 @@ class Resume extends Controller
         
         //base info;
         $base=Db::name("resume_base_info")->where("resume_id", $resumeId)->select();        
-        $base_html='<div class="face">
-						<img src="http://img01.51jobcdn.com/im/2016/resume/man.png"
-							width="85" height="104" alt="头像">
-					</div>
-					<div class="name">'.$base["resume_name"].'</div>
-					<p class="at">现居住'.$base["address"].'&nbsp;│&nbsp;'.$base["work_age"].'年工作经验&nbsp;│&nbsp;'.$base["sex"].'&nbsp;│&nbsp;'.$base["age"].'
-						岁 ('.$base["birthdy"].')&nbsp;│&nbsp;目前正在找工作</p>
-					<div class="tab">
-						<span class="email icons at" title="'.$base["email"].'">'.$base["email"].'</span>&nbsp;<span
-							class="tel icons">'.$base["phone"].'</span>
-					</div>
-					<div class="abox">
-						<div class="mbox" onclick="showMoreClickEvent(this)">
-							<span class="icons">更多展开</span><em class="icons"></em>
-						</div>
-						<div class="all">
-							<div class="e e2">
-								<label>证件号</label><i>：</i>
-								<div>'.$base["identity"].' (身份证)</div>
-							</div>
-							<div class="e e2">
-								<label>婚姻状况</label><i>：</i>
-								<div>'.$base["marry"].'</div>
-							</div>
-							<div class="e e2">
-								<label>身高</label><i>：</i>
-								<div>'.$base["height"].'</div>
-							</div>
-							<div class="e e2">
-								<label>QQ号</label><i>：</i>
-								<div>'.$base["QQ"].'</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="edit_delete">
-						<a id="base_edit" href="baseInfoEditClicked(this);">编辑</a>
-					</div>';
-        $carrer_html='<div class="e">
-						<label>期望薪资</label><i>：</i>
-						<div class="inline-block">'.$base["salary"].'</div>
-					</div>
-					<div class="e">
-						<label>地点</label><i>：</i>
-						<div>
-							<span class="ong">'.$base["	work_place"].'</span>
-						</div>
-					</div>
-					<div class="e">
-						<label>职能/职位</label><i>：</i>
-						<div>
-							<span class="ong">'.$base["work_position"].'</span>
-						</div>
-					</div>
-					<div class="e">
-						<label>行业</label><i>：</i>
-						<div>
-							<span class="ong">'.$base["work_industry"].'</span>
-						</div>
-					</div>
-					<div class="e">
-						<label>个人标签</label><i>：</i>
-						<div>
-							<span class="ong">'.$base["master_label"].'</span>
-						</div>
-					</div>
-					<div class="con">
-						<div class="clear"></div>
-					</div>
-					<div class="edit_delete">
-						<a class="carrer_edit" href="baseInfoEditClicked(this);">编辑</a>
-					</div>';
+        $base_html=self::$htmlExamp->baseInfoHtml($base);
+        $carrer_html=self::$htmlExamp->carrerHtml($base);
         $this->assign("base_info",$base_html);
         $this->assign("Career_expected", $carrer_html);
         return $this->fetch("editResume", ['title'=>"编辑简历"]);
@@ -645,10 +595,50 @@ class Resume extends Controller
     public function saveSection()
     {
         $data = $this->request->post();
-        switch (json($data["id"]))
+        switch ($data["id"])
         {
-            case :
-                break;
+            case "base_info":
+            	$name= $data["name"];
+            	$sex = $data["sex"];
+            	$birthday = $data["birthday"];
+            	$workage = $data["workage"];
+            	$phone = $data["phone"];
+            	$email = $data["email"];
+            	$address = $data["address"];
+            	$qq = $data["qq"];
+            	$indentity = $data["indentity"];
+            	$marry = $data["marry"];
+				$tmpData = [ 
+						'resume_id' => self::newResumeId (),
+						'resume_name' => $name,
+						'sex' => $sex,
+						'birthdy' => $birthday,
+						'work_age' => $workage,
+						'phone' => $phone,
+						'email' => $email,
+						'address' => $address,
+						'QQ' => $qq,
+						'identity' => $indentity,
+						'marry' => $marry 
+				];
+            	self::$baseInfoTabel->data($tmpData);
+            	self::$baseInfoTabel->save();
+            	$html = self::$htmlExamp->baseInfoHtml($tmpData);
+                return json($html);					//传回界面；
         }
     }
+    
+    
+    protected function newResumeId()
+    {
+    	$maxId = self::$baseInfoTabel->max('resume_id');
+    	$minId = self::$baseInfoTabel->min('resume_id');
+    	for($id = $minId; $id < $maxId; $id++)
+    	{
+    		if(0 == self::$baseInfoTabel->where('resume_id', $id)->count())
+    			return $id;
+    	}
+    	return ($maxId +1);
+    }
+    
 }

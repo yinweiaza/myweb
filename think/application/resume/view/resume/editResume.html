@@ -525,25 +525,30 @@ function baseInfoEditClicked(pObject)
  */
 function saveButtonClicked(pObject)
 {
+
 	var saveId = pObject.id;
-	var formData = $("#"+ saveId + "_form").serializeArray();  //serializeArray返回json, serialize返回string;
-	var obj = {};				//对象转json;
-	$.each(formData, function(i,v){
-		obj[v.name] = i.value;
-	});
-	obj["id"] = saveId;
-	$.ajax({
-		url:"{:url('resume/resume/saveSection')}",
-		type:"post",
-		data:obj,
-		dataType:"json",
-		cache : false,
-		async : false,
-		success : function(data) {
-			if(data)
-				alert(data);
-		}
-	});
-}
+		var formData = $("#" + saveId + "_form").serializeArray(); //serializeArray返回json, serialize返回string;
+		var obj = {}; //对象转json;
+		$.each(formData, function(i, v) {
+			obj[v.name] = i.value;
+		});
+		obj["id"] = saveId;
+		$.ajax({
+			url : "{:url('resume/resume/saveSection')}",
+			type : "post",
+			data : obj,
+			dataType : "json",
+			cache : false,
+			async : false,
+			success : function(data) {
+				if (data) {
+					if (saveId == "base_info") {
+						$("$Base").html("");
+						$("$base").append(data);
+					}
+				}
+			}
+		});
+	}
 </script>
 {/block}
