@@ -2,9 +2,10 @@
 namespace app\resume\controller;
 use think\Controller;
 use think\Db;
+use think\Log;
 use think\Session;
 use app\resume\model\ResumeBaseInfo;
-use app\resume\controller\HtmlExamp;
+use app\resume\controller\HtmlExample;
 class Resume extends Controller
 {   
 	
@@ -13,7 +14,7 @@ class Resume extends Controller
 	
 	public function __construct(){
 		$this->baseInfoTabel = new ResumeBaseInfo();
-		$this->htmlExamp = new HtmlExamp();
+		$this->htmlExamp = new HtmlExample();
 		parent::__construct();
 	}
 	
@@ -29,13 +30,13 @@ class Resume extends Controller
     }
     
     /**
-     * 显示简历；
+     * 显示指定简历；
      * @param unknown $resumeId
      * @return mixed|string
      */
     public function index($resumeId)
     {
-        $allresumes=Db::name("resume_base_info")->column("resume_title");
+        $allresumes=Db::name("resume_base_info")->select();
         if(count($allresumes) < $resumeId)
         {
             $this->error("no resume");
@@ -84,99 +85,61 @@ class Resume extends Controller
      * @return mixed|string
      */
     function newCreate()
-    {
-        $requestData = $this->request->post();
-        $resumeTitle=$requestData["resume_title"];        
-        if($resumeTitle)
-        {
-            
-            if(Db::name("resume_base_info")->where("resume_title",$resumeTitle)->count())
-            {
-                $this->error("this name exists");
-                $this->assign("title", "骑着蜗牛去看海的简历");
-                return  $this->fetch("index");
-            }            
-            $maxId = Db::name("resume_base_info")->max("resume_id");
-            
-            $data=["resume_id"=>$maxId+1, "resume_title"=>$resumeTitle];            
+    {    
+        $requireData = $this->request->post();
+        $title = $requireData["title"];
+        $name = $requireData["name"];
+        if($title)
+        {  
+            if( Db::name("resume_base_info")->where("resume_title", $title)->find())
+                return json(["status"=>false, "msg"=>"该简历已经存在，请重新设置"]);
+            $newId = findNewId("resume_base_info", "resume_id");            
+            $data=["resume_id"=>$newId, "resume_title"=>$title, "resume_name"=>$name];            
             Db::name("resume_base_info")->insert($data);            
-            session("resumeId",$maxId+1);
-            
-            $this->initSection();
-            $baseInfoHtml='<div class="red_bd">
-						<form onsumbit="return false;" class="form-horizontal new_add" id="base_info_form" role="form">
-							<div class="form-group">
-								<div class="pull-left"><img src="http://img01.51jobcdn.com/im/2016/resume/man.png"
-							width="85" height="104" alt="头像"></div>
-								<div class="pull-left">
-									<table>
-										<tr>
-											<td><label>姓名</label><i>*</i><input type="text" name="name"></td>
-											<td><label>性别</label><input type="text" name="sex"></td>
-										</tr>
-										<tr>
-											<td><label>出生日期</label><i>*</i><input type="text" name="birthday"></td>
-											<td><label>工作年份</label><i>*</i><input type="text" name="workage"></td>
-										</tr>
-										<tr>
-											<td><label>手机</label><i>*</i><input type="text" name="phone"></td>
-											<td><label>邮箱</label><i>*</i><input type="text" name="email"></td>
-										</tr>
-										<tr>
-											<td><label>居住地</label><i>*</i><input type="text" name="address"></td>
-											<td><label>QQ</label><input type="text" name="qq"></td>
-										</tr>
-										<tr>
-											<td><label>身份证号</label><input type="text"
-												name="indentity"></td>
-											<td><label>婚姻状态</label><input type="text" name="marry"></td>
-										</tr>
-									</table>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-							<div class="btns">
-								<button type="submit" id="base_info" class="save" onclick="saveButtonClicked(this);">保存</button>
-								<button type="cancel" class="cancel">取消</button>
-							</div>
-						</form>
-					</div>';  
-            $carrer_html='<div class="e">
-						<label>期望薪资</label><i>：</i>
-						<div class="inline-block"></div>
-					</div>
-					<div class="e">
-						<label>地点</label><i>：</i>
-						<div>
-							<span class="ong"></span>
-						</div>
-					</div>
-					<div class="e">
-						<label>职能/职位</label><i>：</i>
-						<div>
-							<span class="ong"></span>
-						</div>
-					</div>
-					<div class="e">
-						<label>行业</label><i>：</i>
-						<div>
-							<span class="ong"></span>
-						</div>
-					</div>
-					<div class="e">
-						<label>个人标签</label><i>：</i>
-						<div>
-							<span class="ong"></span>
-						</div>
-					</div>
-					<div class="con">
-						<div class="clear"></div>
-					</div>';
-            $this->assign("base_info",$baseInfoHtml);
-            $this->assign("Career_expected",$carrer_html);
-            return $this->fetch("editResume", ['title'=>"编辑简历"]);
+            session("resumeId",$newId);
+            return json(["status"=>true, "id"=>$newId, "title"=>$title, "name"=>$name]);            
         }else 
-            $this->error("please set the resume title!!");
+            return json(["status"=>false, "msg"=>"请输入简历名!"]);
+    }
+    
+    /**
+     * 编辑指定的简历；
+     * @param unknown $resumeId
+     * @return mixed|string
+     */
+    public function edit($resumeId)
+    {
+        if($resumeId < 0) $this->edit("该简历不存在!");
+        session("resumeId",$resumeId);                  //简历id保存；
+       
+        $this->initSection();
+        
+        //base info;
+        $base=Db::name("resume_base_info")->where("resume_id", $resumeId)->select();        
+        $base_html=$this->htmlExamp->baseInfoHtml2($base[0]);        
+        pr_log($base_html, "test");
+        $carrer_html=$this->htmlExamp->carrerHtml2($base[0]);
+        $this->assign("base_info",$base_html);
+        $this->assign("Career_expected", $carrer_html);
+        return $this->fetch("editResume", ['title'=>"编辑简历"]);
+    }
+    
+    /**
+     * 删除指定的简历；
+     * @param unknown $resumeId
+     */
+    public function delete($resumeId)
+    {
+        $tables = array("work","project","education","schooljob","skilllanguage","schoolaward","skillcertification","skilltrain","additionattach");
+        if(Db::name("resume_base_info")->where("resume_id", $resumeId)->find())
+        {
+            Db::name("resume_base_info")->where("resume_id", $resumeId)->delete();
+            for($idx = 0; $idx < count($tables); $idx++)
+            {
+                Db::name("resume_".$tables[$idx]."_history")->where("resume_id", $resumeId)->delete();
+            }            
+        }
+        return json(["id"=>$resumeId, "msg"=>"删除成功!!"]);
     }
     
     /**
@@ -197,33 +160,7 @@ class Resume extends Controller
     }
         
 
-  
-    protected function  carrerHtml($data, $name)
-    {    	
-    	$html = '';
-    	return $html;
-    }
-    
-    /**
-     * 编辑指定的简历；
-     * @param unknown $resumeId
-     * @return mixed|string
-     */
-    function edit($resumeId)
-    {       
-        if($resumeId < 0) $this->edit("该简历不存在!");
-        session("resumeId",$resumeId);                  //简历id保存；
-        
-        $this->initSection();
-        
-        //base info;
-        $base=Db::name("resume_base_info")->where("resume_id", $resumeId)->select();        
-        $base_html=self::$htmlExamp->baseInfoHtml($base);
-        $carrer_html=self::$htmlExamp->carrerHtml($base);
-        $this->assign("base_info",$base_html);
-        $this->assign("Career_expected", $carrer_html);
-        return $this->fetch("editResume", ['title'=>"编辑简历"]);
-    }
+
     
     /**
      * 编辑选择的区域；
@@ -609,7 +546,7 @@ class Resume extends Controller
             	$indentity = $data["indentity"];
             	$marry = $data["marry"];
 				$tmpData = [ 
-						'resume_id' => self::newResumeId (),
+						'resume_id' => findNewId("resume_base_info", "resume_id"),
 						'resume_name' => $name,
 						'sex' => $sex,
 						'birthdy' => $birthday,
@@ -626,19 +563,6 @@ class Resume extends Controller
             	$html = self::$htmlExamp->baseInfoHtml($tmpData);
                 return json($html);					//传回界面；
         }
-    }
-    
-    
-    protected function newResumeId()
-    {
-    	$maxId = self::$baseInfoTabel->max('resume_id');
-    	$minId = self::$baseInfoTabel->min('resume_id');
-    	for($id = $minId; $id < $maxId; $id++)
-    	{
-    		if(0 == self::$baseInfoTabel->where('resume_id', $id)->count())
-    			return $id;
-    	}
-    	return ($maxId +1);
-    }
-    
+    } 
+ 
 }

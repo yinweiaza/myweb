@@ -1,0 +1,48 @@
+{extend name='public/base'}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{block name='css'} {/block} 
+{block name='main'}
+<div id="fh5co-main">
+	<div class="fh5co-narrow-content">
+		<div class="panel panel-default">
+			<div class='panel-heading'>
+				<h3 class="panel-title">编辑分类<a class="pull-right" href="/public/blog">返回博客主页</a></h3>
+			</div>
+			<div class="panel-body">
+				<table class="table table-striped" style='table-layout: fixed;'>
+					<thead>
+						<tr>
+							<th>类别</th>
+							<th>博文(篇)</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						{volist name="categories" id="vo"}
+						<tr>
+							<td>{$vo.category}</td>
+							<td>{$vo.blogNum}</td>
+							<td><a href="#" id="category_{$vo.id}" onclick="deleteCategory(this);">删除</a></td>
+						</tr>
+						{/volist}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}
+{block name='js'}
+<script type="text/javascript">
+	$(function(){});
+	var deleteCategorySuccess=function(data){
+		alert(data);		
+	};
+	function deleteCategory(pObject)
+	{
+		var id = pObject.id.split('_')[1];		
+		ajaxCaller("/public/blog/delete/category/"+id, [],deleteCategorySuccess);
+		$(pObject).parents("tr").remove();
+	}
+</script>
+{/block}

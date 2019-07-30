@@ -16,7 +16,7 @@
 					<form id="blog_added">
 						<div class="form-group">
 							<label>标题</label> <input type="text" class="form-control"
-								placeholder="在此处输入标题" autocomplete="off">
+								placeholder="在此处输入标题" name="title" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<script id="article-content" name="content" type="text/plain"></script>
@@ -27,13 +27,13 @@
 							</div>
 							<div class="add-article-box-content">
 								<div class="form-group category_choice">		<!-- 所有的博文类别 -->
-									{volist name="categorys" id="vo"} <label class="checkbox-inline">
-										<input type="checkbox" name="myCatalog[]" value="option1">{$vo.category}
+									{volist name="categorys" id="vo"} <label  class="checkbox-inline">
+										<input type="radio" name="myCatalog[]" value="{$vo.id}">{$vo.category}
 									</label> {/volist}
 								</div>
 							</div>
 						</div>
-						<button type="submit" class="btn btn-default">发布</button>
+						<button type="submit" class="btn btn-default" onclick="release();">发布</button>
 					</form>
 				</div>
 			</div>
@@ -122,29 +122,28 @@
 		myFiles.open();
 	}
 
+	var addSuccess=function(data){
+		if(! data.category){
+			alert(data);
+			return;
+		}
+		$("#myModal").modal('hide');		//手动关闭；				
+		var str="";				
+		str="<label class='checkbox-inline'><input type='radio' name='myCatalog[]' value='"+ data.id +"'>"+data.category + "</label>";
+		$(".category_choice").append(str);
+		alert("添加成功!");		
+	};
+	//添加分类；
 	function addCategory() {
 		var formData = $("#new_category").serialize();
+		ajaxCaller("/public/blog/addCategory",formData, addSuccess);
 
-		$.ajax({
-			type : 'post', //post提交
-			url : "{:url('blog/blog/add_new_category')}",
-			dataType : "json", //json格式
-			data : formData, //如果需要提交附加参数，视情况添加
-			clearForm : false, //成功提交后，清除所有表单元素的值7777777777
-			resetForm : false, //成功提交后，重置所有表单元素的值
-			cache : false,
-			async : false, //同步返回
-			success : function(data) {
-				$("#myModal").modal('hide');		//手动关闭；				
-				var str="";				
-				str="<label class='checkbox-inline'><input type='checkbox' name='myCatalog[]' value='option1'>"+data.category + "</label>";
-				$(".category_choice").append(str);
-				alert("添加成功!");
-			},
-			error : function(data) {
-				alert(data);
-			}
-		});
+	}
+	var releaseSuccess = function(data){alert(data)};
+	function release()
+	{
+		var formData = $("#blog_added").serialize();
+		ajaxCaller("/public/blog/release",formData,releaseSuccess);
 	}
 </script>
 {/block}

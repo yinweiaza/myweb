@@ -2,7 +2,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 {block name='css'} 
 <style type="text/css">
-#myModal .np{width: 120px; }
+
 </style>
 {/block}
 {block name='main'}
@@ -15,19 +15,19 @@
 					aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="myModalLabel">新建简历</h4>
 			</div>
-			<form id="new_resume" method="post" action="{:url('resume/resume/newCreate')}">
+			<form id="new_resume" class="form-horizontal">
 				<div class="modal-body">
 					<div class="form-group">
-						<label class="np text-right">简历名：</label><input class="form-control" type="text" name="resume_title">
+						<label class="np col-sm-2 text-right">简历名：</label><div class="col-sm-10"><input class="form-control resume_title"  type="text" name="resume_title"></div>
 					</div>
 					<div class="form-group">
-						<label class="np text-right">姓   名：</label><input class="form-control" type="text" name="name">
+						<label class="np col-sm-2 text-right">姓   名：</label><div class="col-sm-10"><input class="form-control resume_name" type="text" name="name"></div>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<div class="form-group">
 						<button type="cancel" class="btn btn-default" data-dismiss="modal">取消</button>
-						<button type="submit" class="btn btn-primary">新建</button>
+						<button type="submit" class="btn btn-primary" onclick="createResume();">新建</button>
 					</div>
 				</div>
 			</form>
@@ -43,7 +43,7 @@
 				<h3 class="panel-title">所有简历<div class="pull-right"><a data-toggle="modal" data-target="#myModal" href="#">添加简历</a></div></h3>							
 			</div>
 			<div class="panel-body">
-				<table class="table table-striped" style='table-layout: fixed;'>
+				<table class="table table-striped" style='table-layout: fixed;' id="tab">
 					<thead>
 						<tr>
 							<th>编号</th>
@@ -59,8 +59,8 @@
 							<td>{$vo.resume_id}</td>
 							<td>{$vo.resume_title}</td>
 							<td>{$vo.resume_name}</td>
-							<td><a href="#">查看</a></td>
-							<td><a href="#">编辑</a> | <a href="#">删除</a></td>
+							<td><a href="/public/resume/{$vo.resume_id}">查看</a></td>
+							<td><a href="/public/res/edit/{$vo.resume_id}">编辑</a> | <a href="#" onclick="deleteResume(this);" id="delete_{$vo.resume_id}">删除</a></td>
 						</tr>
 					{/volist}
 					</tbody>
@@ -72,19 +72,37 @@
 {/block}
 {block name='js'}
 <script type="text/javascript">
-$().ready(function() {
-	$("#new_resume").validate({
-		rules:{
-			resume_title:{
-				required:true,
-				minlength:2,
-				maxlength:64
-			},
-			name:{
-				required:true,					
-			}
-		}
-	});
-});
+
+var createResumeSuccess=function(data){
+	if(data)
+	{		
+		if(data.status)
+		{			
+			var html = "<tr><td>" + data.id + "</td><td>" + data.title +"</td><td>"+data.name+'</td><td><a href="#">查看</a></td><td><a href="#">编辑</a> | <a href="#">删除</a></td></tr>';
+			$("#tab tr:last").after(html);	
+			$("#myModal").modal('hide');
+		}else
+			alert(data.msg);
+	}
+};
+
+var deleteResumeSuccess = function(data){
+		alert(data.msg);
+		$("#delete_"+data.id).parents('tr').remove();
+	};
+
+function deleteResume(pObject)
+{
+	var tmpId = pObject.id.split('_')[1];
+	ajaxCaller("/public/res/delete/"+ tmpId, {}, deleteResumeSuccess);
+}
+
+function createResume()
+{
+	var postData = {};
+	postData["title"]= $(".resume_title").val();
+	postData["name"] = $(".resume_name").val();
+	ajaxCaller("/public/res/create", postData, createResumeSuccess);
+}
 </script>
 {/block}
