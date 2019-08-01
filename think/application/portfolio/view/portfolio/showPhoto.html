@@ -27,7 +27,7 @@
 		</div>
 	</div>
 	<div class="fh5co-narrow-content">
-		<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">{$album_name}<a class="pull-right" href="/public/photo">返回相册</a></h2>
+		<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">{$album_name}<a class="pull-right" href="/photo">返回相册</a></h2>
 		<ul class="list-inline">
 			<li><button class="btn btn-primary" onclick="deletePhoto();">删除</button></li>
 			<li><a href="#" onclick="cancelChoice();">取消</a></li>
@@ -68,7 +68,7 @@
 			allPhotos[idx] = $(this).attr("value").split('_');
 			idx++;
 		});
-		ajaxCaller("/public/photo/deletePhotos", allPhotos, deletePhotoSuccess);
+		ajaxCaller("/photo/deletePhotos", allPhotos, deletePhotoSuccess);
 	}	
 	
 	function cancelChoice()

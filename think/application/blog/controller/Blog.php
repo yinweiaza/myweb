@@ -181,9 +181,9 @@ class Blog extends Controller
         for($page = 1; $page <= $totalPage; $page++)
         {
             if($page == 1 )
-                $pageIndex=$pageIndex.'<li class="active"><a href="/public/blog/page/'.$page.'">'.$page.'</a></li>';
+                $pageIndex=$pageIndex.'<li class="active"><a href="/blog/page/'.$page.'">'.$page.'</a></li>';
             else
-                $pageIndex=$pageIndex.'<li><a href="/public/blog/page/'.$page.'">'.$page.'</a></li>';
+                $pageIndex=$pageIndex.'<li><a href="/blog/page/'.$page.'">'.$page.'</a></li>';
         }
         $this->assign("blogs",$blogs);
         $this->assign("pageIndex",$pageIndex);
@@ -213,9 +213,9 @@ class Blog extends Controller
         for($page = 1; $page <= $totalPage; $page++)
         {
             if($page == $id )
-                $pageIndex=$pageIndex.'<li class="active"><a href="/public/blog/page/'.$page.'">'.$page.'</a></li>';
+                $pageIndex=$pageIndex.'<li class="active"><a href="/blog/page/'.$page.'">'.$page.'</a></li>';
             else
-                $pageIndex=$pageIndex.'<li><a href="/public/blog/page/'.$page.'">'.$page.'</a></li>';
+                $pageIndex=$pageIndex.'<li><a href="/blog/page/'.$page.'">'.$page.'</a></li>';
         }
         $this->assign("blogs",$blogs);
         $this->assign("pageIndex",$pageIndex);

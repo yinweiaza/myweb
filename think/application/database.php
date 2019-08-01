@@ -13,13 +13,14 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
+    //'hostname'        => 'b-pzzejio81jczdj.bch.rds.gz.baidubce.com',
     'hostname'        => '127.0.0.1',
     // 数据库名
     'database'        => 'b_pzzejio81jczdj',
     // 用户名
-    'username'        => 'root',
+    'username'        => 'b_pzzejio81jczdj',
     // 密码
-    'password'        => '',
+    'password'        => '119988',
     // 端口
     'hostport'        => '3306',
     // 连接dsn

@@ -136,14 +136,14 @@
 	//添加分类；
 	function addCategory() {
 		var formData = $("#new_category").serialize();
-		ajaxCaller("/public/blog/addCategory",formData, addSuccess);
+		ajaxCaller("/blog/addCategory",formData, addSuccess);
 
 	}
 	var releaseSuccess = function(data){alert(data)};
 	function release()
 	{
 		var formData = $("#blog_added").serialize();
-		ajaxCaller("/public/blog/release",formData,releaseSuccess);
+		ajaxCaller("/blog/release",formData,releaseSuccess);
 	}
 </script>
 {/block}

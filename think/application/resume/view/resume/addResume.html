@@ -59,8 +59,8 @@
 							<td>{$vo.resume_id}</td>
 							<td>{$vo.resume_title}</td>
 							<td>{$vo.resume_name}</td>
-							<td><a href="/public/resume/{$vo.resume_id}">查看</a></td>
-							<td><a href="/public/res/edit/{$vo.resume_id}">编辑</a> | <a href="#" onclick="deleteResume(this);" id="delete_{$vo.resume_id}">删除</a></td>
+							<td><a href="/resume/{$vo.resume_id}">查看</a></td>
+							<td><a href="/res/edit/{$vo.resume_id}">编辑</a> | <a href="#" onclick="deleteResume(this);" id="delete_{$vo.resume_id}">删除</a></td>
 						</tr>
 					{/volist}
 					</tbody>
@@ -94,7 +94,7 @@ var deleteResumeSuccess = function(data){
 function deleteResume(pObject)
 {
 	var tmpId = pObject.id.split('_')[1];
-	ajaxCaller("/public/res/delete/"+ tmpId, {}, deleteResumeSuccess);
+	ajaxCaller("/res/delete/"+ tmpId, {}, deleteResumeSuccess);
 }
 
 function createResume()
@@ -102,7 +102,7 @@ function createResume()
 	var postData = {};
 	postData["title"]= $(".resume_title").val();
 	postData["name"] = $(".resume_name").val();
-	ajaxCaller("/public/res/create", postData, createResumeSuccess);
+	ajaxCaller("/res/create", postData, createResumeSuccess);
 }
 </script>
 {/block}

@@ -47,7 +47,7 @@
  *
  * - googleSpreadsheetWorksheet : String 
  * The Google Spreadsheet worksheet. The available id's can be read from 
- * https://spreadsheets.google.com/feeds/worksheets/{key}/public/basic
+ * https://spreadsheets.google.com/feeds/worksheets/{key}/basic
  *
  * - itemDelimiter : String
  * Item or cell delimiter for parsing CSV. Defaults to ",".
@@ -265,7 +265,7 @@
 		if (googleSpreadsheetKey) {
 			jQuery.getJSON('https://spreadsheets.google.com/feeds/cells/' + 
 				  googleSpreadsheetKey + '/' + (options.googleSpreadsheetWorksheet || 'od6') +
-					  '/public/values?alt=json-in-script&callback=?',
+					  '/values?alt=json-in-script&callback=?',
 					  function (json) {
 					
 				// Prepare the data from the spreadsheat

@@ -93,7 +93,7 @@
 			{volist name='albums' id="vo"}
 			<div class="col-md-3 col-sm-6 col-padding text-center animate-box">				
 				<input type="checkbox" class="pull-left checkbox_albums" value="{$vo.album_id}">				
-				<a href="/public/photo/{$vo.album_id}" class="work image-popup"
+				<a href="/photo/{$vo.album_id}" class="work image-popup"
 					style="background-image: url({$vo.firstImg});background-color:#CCCCCC;">
 					<div class="desc">
 						<h3>{$vo.album_name}</h3>
@@ -147,7 +147,7 @@
 	
 	var deleteAlbumSuccess = function(data){
 		alert(data);
-		window.location.href="/public/photo";
+		window.location.href="/photo";
 	};
 	
 	function deleteAlbum()
@@ -165,7 +165,7 @@
 		});
 		//alert(allAlbums);
 		//alert(JSON.stringify(allAlbums));
-		ajaxCaller("/public/photo/deleteAlbums",allAlbums, deleteAlbumSuccess);
+		ajaxCaller("/photo/deleteAlbums",allAlbums, deleteAlbumSuccess);
 	}
 	
 	<?php $timestamp = time();?>
@@ -181,7 +181,7 @@
 			//设置图片按钮的路径（当你的按钮是一张图片时）。如果使用默认的样式，你还可以创建一个鼠标悬停状态，但要把两种状态的图片放在一起，并且默认的放上面，悬停状态的放在下面（原文好难表达啊：you can create a hover state for the button by stacking the off state above the hover state in the image）。这只是一个比较便利的选项，最好的方法还是把图片写在CSS里面。
 			buttonText: '<div>选择文件</div>',
 			//设置按钮文字。值会被当作html渲染，所以也可以包含html标签
-			checkExisting: '/public/check-exists.php',
+			checkExisting: '/check-exists.php',
 			//接受一个文件路径。此文件检查正要上传的文件名是否已经存在目标目录中。存在时返回1，不存在时返回0(应该主要是作为后台的判断吧)，默认为false
 			debug: false,
 			//开启或关闭debug模式
@@ -230,7 +230,7 @@
 			//设置文件上传后等待服务器响应的秒数，超出这个时间，将会被认为上传成功，默认为30秒
 			swf: '__static__/uploadify.swf',
 			//swf的相对路径，必写项
-			uploader: '/public/uploadify.php',
+			uploader: '/uploadify.php',
 			//服务器端脚本文件路径，必写项
 			uploadLimit: 10,
 			//上传文件的数量。达到或超出这数量会触发onUploadError方法。默认999
